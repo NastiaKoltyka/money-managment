@@ -1,0 +1,67 @@
+.header {
+  width: 100%;
+  max-width: 1600px;
+  display: flex;
+  justify-content: space-between;
+  margin: 0 auto;
+}
+
+.menu {
+  width: 80px;
+  height: 63px;
+  background-color: rgb(157, 232, 157);
+}
+
+.wrapper {
+  width: 94%;
+  height: 63px;
+  background-color: rgb(157, 232, 157);
+  display: flex;
+  line-height: 63px;
+}
+.wrapper div{
+    display: flex;
+    margin: 3px 0px 0px 30px;
+    white-space: nowrap;
+}
+
+.picture {
+  background-image: url(../../../../pictures/menu.svg);
+  width: 50px;
+  height: 50px;
+  background-size: contain;
+  margin: 6px auto;
+}
+
+
+.photo,
+.balance,
+.expenses,
+.date,
+.log-out {
+  width: 50px;
+  height: 50px;
+  background-size: cover;
+}
+
+.photo {
+  background-image: url(../../../../pictures/user.svg);
+}
+
+.balance {
+  background-image: url(../../../../pictures/wallet.svg);
+}
+
+.expenses {
+  background-image: url(../../../../pictures/cash.svg);
+}
+
+.date {
+  background-image: url(../../../../pictures/calendar.svg);
+}
+.log-out{
+    background-image: url(../../../../pictures/log-out.svg);
+}
+.log-out-wrapper{
+    cursor: pointer;
+}

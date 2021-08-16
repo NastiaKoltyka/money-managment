@@ -1,0 +1,28 @@
+<div class="header" *ngIf="router.url!=='/login'">
+  <div class="menu">
+    <div class="picture"></div>
+  </div>
+  <div class="wrapper">
+    <div class="user-wrapper">
+      <div class="photo"></div>
+      <div>USER: {{authService.user.name}} {{authService.user.surname}}</div>
+    </div>
+    <div class="balance-wrapper">
+      <div class="balance"></div>
+      <div>BALANCE:$999999999</div>
+    </div>
+    <div class="expenses-wrapper">
+      <div class="expenses"></div>
+      <div>EXPENSES:$999999999</div>
+    </div>
+    <div class="date-wrapper">
+      <div class="date"></div>
+      <div>Date:{{date| date:'dd.MM.yyyy'}}</div>
+    </div>
+    <div class="log-out-wrapper" [routerLink]="'/login'">
+      <div class="log-out"></div>
+      <div>LogOut</div>
+    </div>
+  </div>
+</div>
+<router-outlet></router-outlet>

@@ -14,6 +14,7 @@ const getConnection = () => {
         create table if not exists users(
             id int primary key auto_increment,
             name varchar(255) not null,
+            surname varchar(255) not null,
             email varchar(255) not null,
             password varchar(255) not null);`;
 
@@ -34,7 +35,7 @@ const getConnection = () => {
             FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE);`
 
 
-    const insertUser = `INSERT INTO users (name, email, password )  VALUES ?`;
+    const insertUser = `INSERT INTO users (name,surname, email, password )  VALUES ?`;
 
     const insertExpenseTable = `INSERT INTO expenses (user_id, category, picture) VALUES ?`
     const insertSavingTable = `INSERT INTO savings (user_id, category, picture) VALUES ?`
@@ -44,9 +45,9 @@ const getConnection = () => {
                 .then(usersCountResult => {
                     if (usersCountResult[0][0].Count == 0) {
                         return connection.query(insertUser, [[
-                                ['admin', 'admin@gmail.com', 'admin'],
-                                ['Petro', 'petro@gmail.com', '12345'],
-                                ['Ira', 'ira@gmail.com', '1111']]
+                                ['admin','admin','admin@gmail.com', 'admin'],
+                                ['Petro','Petrov','petro@gmail.com', '12345'],
+                                ['Ira', 'Ivanova','ira@gmail.com', '1111']]
                             ])
                             .then(createExpenseResult => {
                                 return Promise.all(connection.query(insertExpenseTable, [
@@ -134,6 +135,7 @@ const filterUserFields = (user) => {
     const {
         id,
         name,
+        surname,
         email,
         password,
         expenses,
@@ -142,6 +144,7 @@ const filterUserFields = (user) => {
     let plainUser = {
         id,
         name,
+        surname,
         email,
         password,
         expenses,
