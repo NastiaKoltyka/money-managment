@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthService } from '../auth.sevice';
+import { ActivatedRoute } from '@angular/router';
+
 import { Category } from '../classes/category';
 @Component({
   selector: 'app-dashboard',
@@ -13,15 +14,19 @@ export class DashboardComponent implements OnInit {
   selectedSaving: number;
   selectedIncome: boolean;
 
-  constructor(public authService: AuthService) {
-    this.savings = authService.user.savings;
-    this.expenses = authService.user.expenses;
+  constructor( public activatedRout:ActivatedRoute) {
+    this.savings = [];
+    this.expenses =[];
     this.selectedIncome = false;
     this.selectedSaving = -1;
     this.selectedSpend = -1;
   }
 
   ngOnInit(): void {
+    this.activatedRout.data.subscribe(data=>{
+      this.savings = data.user.savings;
+      this.expenses = data.user.expenses;
+    })
   }
 
   selectSpend(index: number) {
