@@ -1,11 +1,13 @@
+import { Category } from "./category";
+
 export class User {
     id:number;
     name:string;
     surname:string;
     email:string;
     password:string;
-    expenses:string[];
-    savings:string[];
+    expenses:Category[];
+    savings:Category[];
     
 
     constructor(name: string, email: string, password: string) {

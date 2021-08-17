@@ -6,13 +6,37 @@
     box-shadow: 0px 0px 18px 7px rgba(34, 60, 80, 0.2);
 }
 
-.block{
+.block {
     width: 100%;
-    min-height: 70px;
+    min-height: 90px;
     padding: 15px;
 }
 
-.block-title{
+.block-title {
     text-transform: uppercase;
     border-bottom: 1px solid grey;
+}
+p {
+    width: 70px;
+    text-align: center;
+    margin-bottom: 0px;
+}
+.category {
+    display: flex;
+    margin-top: 20px;
+}
+.circle {
+    border: 2px solid rgb(133, 236, 133);
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    background-size: 45px 40px;
+    background-repeat: no-repeat;
+    background-position: center;
+    margin-right: 30px;
+}
+.circle-add {
+    border: 2px solid grey;
+    background-image: url(pictures/plus.png);
+    margin-top: 25px;
 }

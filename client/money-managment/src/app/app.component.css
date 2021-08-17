@@ -9,13 +9,13 @@
 .menu {
   width: 80px;
   height: 63px;
-  background-color: rgb(157, 232, 157);
+  background-color: rgb(133, 236, 133);
 }
 
 .wrapper {
   width: 94%;
   height: 63px;
-  background-color: rgb(157, 232, 157);
+  background-color: rgb(133, 236, 133);
   display: flex;
   line-height: 63px;
 }
@@ -26,7 +26,7 @@
 }
 
 .picture {
-  background-image: url(../../../../pictures/menu.svg);
+  background-image: url(pictures/menu.svg);
   width: 50px;
   height: 50px;
   background-size: contain;
@@ -45,22 +45,22 @@
 }
 
 .photo {
-  background-image: url(../../../../pictures/user.svg);
+  background-image: url(pictures/user.svg);
 }
 
 .balance {
-  background-image: url(../../../../pictures/wallet.svg);
+  background-image: url(pictures/wallet.svg);
 }
 
 .expenses {
-  background-image: url(../../../../pictures/cash.svg);
+  background-image: url(pictures/cash.svg);
 }
 
 .date {
-  background-image: url(../../../../pictures/calendar.svg);
+  background-image: url(pictures/calendar.svg);
 }
 .log-out{
-    background-image: url(../../../../pictures/log-out.svg);
+    background-image: url(pictures/log-out.svg);
 }
 .log-out-wrapper{
     cursor: pointer;

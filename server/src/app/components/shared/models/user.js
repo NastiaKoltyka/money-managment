@@ -50,26 +50,27 @@ const getConnection = () => {
                                 ['Ira', 'Ivanova','ira@gmail.com', '1111']]
                             ])
                             .then(createExpenseResult => {
-                                return Promise.all(connection.query(insertExpenseTable, [
+                                console.log('success')
+                                return Promise.all([connection.query(insertExpenseTable, [
                                     [
-                                        [1, 'food', 'lala.png'],
-                                        [1, 'movies', 'tralala.png'],
-                                        [2, 'food', 'lala.png'],
-                                        [3, 'food', 'lala.png'],
-                                        [3, 'medical', 'picture1.png']
+                                        [1, 'food', 'fork.png'],
+                                        [1, 'movies', 'cinema.png'],
+                                        [2, 'food', 'fork.png'],
+                                        [3, 'food', 'fork.png'],
+                                        [3, 'medical', 'first-aid-kit.png']
                                     ]
                                 ]), connection.query(insertSavingTable, [
                                     [
-                                        [1, 'cash', 'lala.png'],
-                                        [1, 'bank', 'tralala.png'],
-                                        [2, 'cash', 'lala.png'],
-                                        [2, 'bank', 'tralala.png'],
-                                        [3, 'cash', 'lala.png'],
-                                        [3, 'bank', 'tralala.png']
+                                        [1, 'cash', 'money.png'],
+                                        [1, 'bank', 'bank.png'],
+                                        [2, 'cash', 'money.png'],
+                                        [2, 'bank', 'bank.png'],
+                                        [3, 'cash', 'money.png'],
+                                        [3, 'bank', 'bank.png']
                                     ]
-                                ])).then(insertResult => {
+                                ])]).then(insertResult => {
                                     return connection;
-                                });
+                                })
                             });
                             
                     } else {
@@ -198,7 +199,7 @@ const getUserByCredentials = (email, password) => {
             } else {
                 return Promise.reject({
                     code: 500,
-                    description: `Error getting user by id from the database. ${err.message}`
+                    description: `Error getting user by credentials from the database. ${err.message}`
                 });
             }
         });
