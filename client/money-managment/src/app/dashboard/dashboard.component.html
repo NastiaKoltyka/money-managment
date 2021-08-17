@@ -1,17 +1,17 @@
 <div class="container">
     <div class="block">
-        <div class="income">
+        <div class="income" [ngClass]="{selected: selectedIncome}">
             <p>INCOME</p>
-            <div class="circle"></div>
+            <div class="circle" (click)="selectIncome()"></div>
             <p>500$</p>
         </div>
     </div>
-    <div class="block">
+    <div class="block" [ngClass]="{highlighted: selectedIncome }">
         <div class="block-title">Savings</div>
-        <div class="category">
-            <div *ngFor="let saving of savings">
+        <div class="categories">
+            <div class="category" *ngFor="let saving of savings; let i = index" [ngClass]="{selected: i == selectedSaving}">
                 <p>{{saving.category}}</p>
-                <div class="circle" style="background-image:  url('http://localhost:3000/api/images/{{saving.picture}}')"></div>
+                <div class="circle" style="background-image:  url('http://localhost:3000/api/images/{{saving.picture}}')" (click)="selectSaving(i)"></div>
                 <p>500$</p>
             </div>
             <div>
@@ -19,12 +19,12 @@
             </div>
         </div>
     </div>
-    <div class="block">
+    <div class="block" [ngClass]="{highlighted: selectedSaving!=-1 }" >
         <div class="block-title">Spends</div>
-        <div class="category">
-            <div *ngFor="let expens of expenses">
+        <div class="categories">
+            <div class="category" *ngFor="let expens of expenses; let i = index" [ngClass]="{selected: i == selectedSpend}">
                 <p>{{expens.category}}</p>
-                <div class="circle" style="background-image:  url('http://localhost:3000/api/images/{{expens.picture}}')"></div>
+                <div class="circle" style="background-image:  url('http://localhost:3000/api/images/{{expens.picture}}')" (click)="selectSpend(i)"></div>
                 <p>500$</p>
             </div>
             <div>

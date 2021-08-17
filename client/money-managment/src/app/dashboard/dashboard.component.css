@@ -21,7 +21,7 @@ p {
     text-align: center;
     margin-bottom: 0px;
 }
-.category {
+.categories {
     display: flex;
     margin-top: 20px;
 }
@@ -39,4 +39,12 @@ p {
     border: 2px solid grey;
     background-image: url(pictures/plus.png);
     margin-top: 25px;
+}
+
+.selected{
+    font-weight: bold;
+}
+
+.block.highlighted .category .circle {
+    border: 4px solid rgb(133, 236, 133);
 }
