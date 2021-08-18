@@ -7,11 +7,13 @@ import { HttpClientModule }   from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-
+import { CalculatorComponent } from './calculator/calculator.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
     AppComponent,
+    CalculatorComponent
   ],
   imports: [
     BrowserModule,
@@ -20,6 +22,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     BrowserAnimationsModule,
     ToastrModule.forRoot(),
     NgbModule,
+    FormsModule, ReactiveFormsModule
   ],
   providers: [DatePipe],
   bootstrap: [AppComponent]
