@@ -2,9 +2,12 @@
   display: grid;
   justify-content: center;
   align-content: center;
-  min-height: 100vh;
   grid-template-columns: repeat(4, 100px);
-  grid-template-rows: minmax(120px, auto) repeat(5, 100px);
+  grid-template-rows: minmax(54px, auto) repeat(5, 100px);
+  position: absolute;
+  top: calc( 50% - 250px);
+  left: calc( 50% - 200px);
+  box-shadow: 0px 5px 10px 2px rgb(34 60 80 / 20%);
 }
 
 .calculator-grid > button {
@@ -57,7 +60,6 @@ input {
 .buttons {
   position: relative;
   display: flex;
-  top: 67px;
   justify-content: flex-end;
   grid-column: 1 / -1;
   height: 53px;
