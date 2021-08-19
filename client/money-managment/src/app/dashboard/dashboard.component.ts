@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Category } from '../classes/category';
+
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
@@ -12,6 +13,8 @@ export class DashboardComponent implements OnInit {
   selectedSpend: number;
   selectedSaving: number;
   selectedIncome: boolean;
+  calculatorVisible:boolean;
+  result:number;
 
   constructor( public activatedRout:ActivatedRoute) {
     this.savings = [];
@@ -19,6 +22,8 @@ export class DashboardComponent implements OnInit {
     this.selectedIncome = false;
     this.selectedSaving = -1;
     this.selectedSpend = -1;
+    this.calculatorVisible=false;
+    this.result=0;
   }
 
   ngOnInit(): void {
@@ -32,7 +37,7 @@ export class DashboardComponent implements OnInit {
     if (this.selectedSaving != -1) {
       this.selectedSpend = -1;
       this.selectedSaving = -1;
-      confirm('Spend money)))');
+      this.calculatorVisible=true;
     }
     else {
       alert('First choose saving');
@@ -46,7 +51,7 @@ export class DashboardComponent implements OnInit {
     if (this.selectedIncome) {
       this.selectedSaving = -1;
       this.selectedIncome = false;
-      confirm('Income money)))');
+      this.calculatorVisible=true;
     }
     else {
       if (this.selectedSaving !== index) {
@@ -55,7 +60,7 @@ export class DashboardComponent implements OnInit {
         this.selectedSpend = -1;
       }
       else {
-        this.selectedSaving = -1
+        this.selectedSaving = -1;
       }
     }
   }
@@ -65,5 +70,10 @@ export class DashboardComponent implements OnInit {
     this.selectedSaving = -1;
     this.selectedSpend = -1;
   }
-
+  applyTransaction(result:number) {
+    this.result=result;
+  }
+  closeCalculator() {
+    this.calculatorVisible = false;
+  }
 }

@@ -9,9 +9,12 @@
     <div class="block" [ngClass]="{highlighted: selectedIncome }">
         <div class="block-title">Savings</div>
         <div class="categories">
-            <div class="category" *ngFor="let saving of savings; let i = index" [ngClass]="{selected: i == selectedSaving}">
+            <div class="category" *ngFor="let saving of savings; let i = index"
+                [ngClass]="{selected: i == selectedSaving}">
                 <p>{{saving.category}}</p>
-                <div class="circle" style="background-image:  url('http://localhost:3000/api/images/{{saving.picture}}')" (click)="selectSaving(i)"></div>
+                <div class="circle"
+                    style="background-image:  url('http://localhost:3000/api/images/{{saving.picture}}')"
+                    (click)="selectSaving(i)"></div>
                 <p>500$</p>
             </div>
             <div>
@@ -19,12 +22,15 @@
             </div>
         </div>
     </div>
-    <div class="block" [ngClass]="{highlighted: selectedSaving!=-1 }" >
+    <div class="block" [ngClass]="{highlighted: selectedSaving!=-1 }">
         <div class="block-title">Spends</div>
         <div class="categories">
-            <div class="category" *ngFor="let expens of expenses; let i = index" [ngClass]="{selected: i == selectedSpend}">
+            <div class="category" *ngFor="let expens of expenses; let i = index"
+                [ngClass]="{selected: i == selectedSpend}">
                 <p>{{expens.category}}</p>
-                <div class="circle" style="background-image:  url('http://localhost:3000/api/images/{{expens.picture}}')" (click)="selectSpend(i)"></div>
+                <div class="circle"
+                    style="background-image:  url('http://localhost:3000/api/images/{{expens.picture}}')"
+                    (click)="selectSpend(i)"></div>
                 <p>500$</p>
             </div>
             <div>
@@ -33,3 +39,5 @@
         </div>
     </div>
 </div>
+<app-calculator *ngIf="calculatorVisible" (apply)="applyTransaction($event)" (closeCalculator)="closeCalculator()"></app-calculator>
+{{result}}

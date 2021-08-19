@@ -1,15 +1,17 @@
 <form [formGroup]="calculator">
-<div class="calculator-grid">
-    <div class="buttons">
-        <button type="submit"class="add"(click)="save()" ></button>
-        <div class="close"(click)="close()"></div>
+    <div class="calculator-grid">
+        <div class="buttons">
+            <button type="submit" class="add" (click)="save()" ></button>
+            <div class="close" (click)="close()"></div>
+        </div>
+        <div class="output">
+            <input type="text" formControlName="number" value="{{this.calculator.controls['number'].value}}"
+                (focus)="onFocus()" (blur)="onBlur()">
+            <div *ngIf="calculator.controls['number'].invalid && invalid_fields" class="error">Plese write the number
+            </div>
+        </div>
+        <button *ngFor="let button of buttons" (click)="pressButton(button)">{{button}}</button>
+        <button class="data-equals green" (click)="equals()"
+            [disabled]="calculator.controls['number'].invalid ">=</button>
     </div>
-    <div class="output" >
-        <input type="text" formControlName="number" value="{{this.calculator.controls['number'].value}}">
-        <div *ngIf="calculator.controls['number'].invalid && invalid_fields" class="error">Plese write the number </div>
-    </div>
-    <button *ngFor="let button of buttons" (click)="pressButton(button)">{{button}}</button>
-    <button class="data-equals green" (click)="equals()" [disabled]="calculator.controls['number'].invalid ">=</button>
-</div>
-{{result}}
 </form>
