@@ -6,7 +6,7 @@ const images = require('./images.route');
 
 module.exports = () => {
     const routing = Router();
-    routing.use('/users', users());
+    routing.use('/ersus', users());
     routing.use('/auth', auth());
     routing.use('/images', images());
 

@@ -1,5 +1,7 @@
 const mysql = require('mysql2');
 const config = require('../../../../config/app');
+const expenses = require('./expens');
+const savings = require('./saving');
 
 const getConnection = () => {
     const connection = mysql.createConnection({
@@ -53,7 +55,6 @@ const getConnection = () => {
                                 ['Ira', 'Ivanova','ira@gmail.com', '1111','UAH']]
                             ])
                             .then(createExpenseResult => {
-                                console.log('success')
                                 return Promise.all([connection.query(insertExpenseTable, [
                                     [
                                         [1, 'food', 'fork.png', 200],
@@ -98,26 +99,16 @@ const getUserById = (userId) => {
                     }
                     return user;
                 }).then(user => {
-                    return connection.query("SELECT category, picture, balance FROM expenses WHERE user_id=?", user.id)
-                        .then(result => {
-                            console.log('Result: ', result[0][0].category);
-                            user.expenses = result[0].map(row => {
-                                return { category: row.category, picture: row.picture,balance: row.balance}
-                            });
-                            console.log(user.expenses);
-                            return user;
-                        });
-
+                    return expenses.getExpensesByUserId(user.id).then(exp => {
+                        user.expenses = exp;
+                        return user;
+                    });
                 })
                 .then(user => {
-                    return connection.query("SELECT category, picture, balance FROM savings WHERE user_id=?", user.id)
-                        .then(result => {
-                            user.savings = result[0].map(row => {
-                                return { category: row.category, picture: row.picture, balance: row.balance }
-                            });
-                            return user;
-                        });
-
+                    return savings.getSavingsByUserId(user.id).then(savings => {
+                        user.savings = savings;
+                        return user;
+                    });
                 })
                 .then(user=> {
                     connection.close();
@@ -175,24 +166,16 @@ const getUserByCredentials = (email, password) => {
                     }
                     return user;
                 }).then(user => {
-                    return connection.query("SELECT category, picture, balance FROM expenses WHERE user_id=?", user.id)
-                        .then(result => {
-                            user.expenses = result[0].map(row => {
-                                return { category: row.category, picture: row.picture, balance: row.balance}
-                            });
-                            return user;
-                        });
-
+                    return expenses.getExpensesByUserId(user.id).then(exp => {
+                        user.expenses = exp;
+                        return user;
+                    });
                 })
                 .then(user => {
-                    return connection.query("SELECT category, picture, balance FROM savings WHERE user_id=?", user.id)
-                        .then(result => {
-                            user.savings = result[0].map(row => {
-                                return { category: row.category, picture: row.picture, balance: row.balance}
-                            });
-                            return user;
-                        });
-
+                    return savings.getSavingsByUserId(user.id).then(savings => {
+                        user.savings = savings;
+                        return user;
+                    });
                 })
                 .then(user=> {
                     connection.close();

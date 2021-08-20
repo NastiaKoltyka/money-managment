@@ -8,12 +8,12 @@ const getConnection = () => {
         user: config.user,
         database: 'moneyManagement',
         password: config.password
-    }).promise();
+    }).promise()
     
     return Promise.resolve(connection);
 }
 
-const getSavingsByUserId = (userId) => {
+const getExpensesByUserId = (userId) => {
     return getConnection()
         .then(connection => {
             return connection.query("SELECT category, picture, balance FROM savings WHERE user_id=?", userId)
@@ -37,5 +37,5 @@ const getSavingsByUserId = (userId) => {
 }
 
 module.exports = {
-    getSavingsByUserId
+    getExpensesByUserId
 }
