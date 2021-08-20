@@ -3,7 +3,7 @@
         <div class="income" [ngClass]="{selected: selectedIncome}">
             <p>INCOME</p>
             <div class="circle" (click)="selectIncome()"></div>
-            <p>500$</p>
+            <p>{{userIncome}}{{userCurrency}}</p>
         </div>
     </div>
     <div class="block" [ngClass]="{highlighted: selectedIncome }">
@@ -15,7 +15,7 @@
                 <div class="circle"
                     style="background-image:  url('http://localhost:3000/api/images/{{saving.picture}}')"
                     (click)="selectSaving(i)"></div>
-                <p>500$</p>
+                <p>{{saving.balance}} {{userCurrency}}</p>
             </div>
             <div>
                 <div class="circle circle-add"></div>
@@ -31,7 +31,7 @@
                 <div class="circle"
                     style="background-image:  url('http://localhost:3000/api/images/{{expens.picture}}')"
                     (click)="selectSpend(i)"></div>
-                <p>500$</p>
+                <p>{{expens.balance}}{{userCurrency}}</p>
             </div>
             <div>
                 <div class="circle circle-add"></div>
@@ -40,4 +40,3 @@
     </div>
 </div>
 <app-calculator *ngIf="calculatorVisible" (apply)="applyTransaction($event)" (closeCalculator)="closeCalculator()"></app-calculator>
-{{result}}
