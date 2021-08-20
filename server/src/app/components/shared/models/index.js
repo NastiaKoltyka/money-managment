@@ -1,3 +1,3 @@
 require('./user');
-require('./expens');
+require('./expense');
 require('./saving');

@@ -1,6 +1,6 @@
 const mysql = require('mysql2');
 const config = require('../../../../config/app');
-const expenses = require('./expens');
+const expenses = require('./expense');
 const savings = require('./saving');
 
 const getConnection = () => {
@@ -18,7 +18,8 @@ const getConnection = () => {
             name varchar(255) not null,
             surname varchar(255) not null,
             email varchar(255) not null,
-            carency varchar(255) not null,
+            currency varchar(255) not null,
+            income float not null,
             password varchar(255) not null);`;
 
     const expenseTable = `
@@ -40,7 +41,7 @@ const getConnection = () => {
             FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE);`
 
 
-    const insertUser = `INSERT INTO users (name,surname, email, password, carency )  VALUES ?`;
+    const insertUser = `INSERT INTO users (name,surname, email, password, currency, income)  VALUES ?`;
 
     const insertExpenseTable = `INSERT INTO expenses (user_id, category, picture, balance) VALUES ?`
     const insertSavingTable = `INSERT INTO savings (user_id, category, picture, balance) VALUES ?`
@@ -50,9 +51,9 @@ const getConnection = () => {
                 .then(usersCountResult => {
                     if (usersCountResult[0][0].Count == 0) {
                         return connection.query(insertUser, [[
-                                ['admin','admin','admin@gmail.com', 'admin' ,'UAH'],
-                                ['Petro','Petrov','petro@gmail.com', '12345','UAH'],
-                                ['Ira', 'Ivanova','ira@gmail.com', '1111','UAH']]
+                                ['admin','admin','admin@gmail.com', 'admin' ,'UAH', 20000],
+                                ['Petro','Petrov','petro@gmail.com', '12345','UAH', 1200],
+                                ['Ira', 'Ivanova','ira@gmail.com', '1111','UAH', 6000]]
                             ])
                             .then(createExpenseResult => {
                                 return Promise.all([connection.query(insertExpenseTable, [
@@ -133,7 +134,8 @@ const filterUserFields = (user) => {
         surname,
         email,
         password,
-        carency,
+        currency,
+        income,
         expenses,
         savings,
     } = user;
@@ -143,7 +145,8 @@ const filterUserFields = (user) => {
         surname,
         email,
         password,
-        carency,
+        currency,
+        income,
         expenses,
         savings
     };
@@ -193,8 +196,41 @@ const getUserByCredentials = (email, password) => {
         });
 }
 
+const updateUserById = (userId, user) => {
+    return getConnection()
+      .then(connection => {
+        return connection.query('SELECT COUNT(*) as Count FROM users WHERE id=?', [userId]).then(checkUserResult => {
+          if (checkUserResult[0][0].Count == 0) {
+            return Promise.reject({
+              code: 404,
+              description: 'Specified user doesn\'t exist'
+            });
+            
+          } else {
+            const sql = `UPDATE users SET name=?, surname=?, email=?, password=?, currency=?, income=? WHERE id=?`;
+            const data = [user.name, user.surname, user.email, user.password, user.currency, user.income, userId];
+            return connection.query(sql, data)
+              .then(userResult => {
+                connection.close();
+                return true;
+              })
+          }
+        });
+      }).catch(err => {
+        if (typeof err.code == 'number') {
+          return Promise.reject(err);
+        } else {
+          return Promise.reject({
+            code: 500,
+            description: `Error updating user in the database. ${err.message}`
+          });
+        }
+      });
+  }
+
 module.exports = {
     getUserById,
-    getUserByCredentials
+    getUserByCredentials,
+    updateUserById,
   }
   

@@ -8,7 +8,8 @@ export class User {
     password:string;
     expenses:Category[];
     savings:Category[];
-    
+    currency: string;
+    income: number;
 
     constructor(name: string, email: string, password: string) {
         this.id = 0;
@@ -18,5 +19,7 @@ export class User {
         this.password=password;
         this.expenses=[];
         this.savings=[];
+        this.currency = '';
+        this.income = 0;
     }
 }
