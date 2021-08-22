@@ -9,7 +9,7 @@ const getConnection = () => {
         database: 'moneyManagement',
         password: config.password
     }).promise();
-    
+
     return Promise.resolve(connection);
 }
 
@@ -40,7 +40,7 @@ const getSavingsByUserId = (userId) => {
 const getSavingById = (id) => {
     return getConnection()
         .then(connection => {
-            return connection.query("SELECT id, category, picture, balance FROM savings WHERE id=?", id)
+            return connection.query("SELECT id, category, picture, balance, user_id FROM savings WHERE id=?", id)
                 .then(result => {
                     connection.close();
                     let row = result[0][0];
@@ -54,7 +54,8 @@ const getSavingById = (id) => {
                         id: row.id,
                         category: row.category,
                         picture: row.picture,
-                        balance: row.balance
+                        balance: row.balance,
+                        userId: row.user_id
                     }
                 });
         })

@@ -20,6 +20,7 @@ const getConnection = () => {
             email varchar(255) not null,
             currency varchar(255) not null,
             income float not null,
+            balance int,
             password varchar(255) not null);`;
 
     const expenseTable = `
@@ -41,7 +42,7 @@ const getConnection = () => {
             FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE);`
 
 
-    const insertUser = `INSERT INTO users (name,surname, email, password, currency, income)  VALUES ?`;
+    const insertUser = `INSERT INTO users (name,surname, email, password, currency, income, balance)  VALUES ?`;
 
     const insertExpenseTable = `INSERT INTO expenses (user_id, category, picture, balance) VALUES ?`
     const insertSavingTable = `INSERT INTO savings (user_id, category, picture, balance) VALUES ?`
@@ -50,10 +51,12 @@ const getConnection = () => {
             return connection.query('SELECT COUNT(*) as Count FROM users')
                 .then(usersCountResult => {
                     if (usersCountResult[0][0].Count == 0) {
-                        return connection.query(insertUser, [[
-                                ['admin','admin','admin@gmail.com', 'admin' ,'UAH', 20000],
-                                ['Petro','Petrov','petro@gmail.com', '12345','UAH', 1200],
-                                ['Ira', 'Ivanova','ira@gmail.com', '1111','UAH', 6000]]
+                        return connection.query(insertUser, [
+                                [
+                                    ['admin', 'admin', 'admin@gmail.com', 'admin', 'UAH', 20000, 29500],
+                                    ['Petro', 'Petrov', 'petro@gmail.com', '12345', 'UAH', 1200, 2100],
+                                    ['Ira', 'Ivanova', 'ira@gmail.com', '1111', 'UAH', 6000, 31923]
+                                ]
                             ])
                             .then(createExpenseResult => {
                                 return Promise.all([connection.query(insertExpenseTable, [
@@ -70,20 +73,21 @@ const getConnection = () => {
                                         [1, 'bank', 'bank.png', 1500],
                                         [2, 'cash', 'money.png', 900],
                                         [2, 'bank', 'bank.png', 0],
-                                        [3, 'cash', 'money.png',13578],
-                                        [3, 'bank', 'bank.png',12345]
+                                        [3, 'cash', 'money.png', 13578],
+                                        [3, 'bank', 'bank.png', 12345]
                                     ]
                                 ])]).then(insertResult => {
                                     return connection;
                                 })
                             });
-                            
+
                     } else {
                         return connection;
                     }
                 })
         });
 }
+
 
 const getUserById = (userId) => {
     return getConnection()
@@ -102,6 +106,10 @@ const getUserById = (userId) => {
                 }).then(user => {
                     return expenses.getExpensesByUserId(user.id).then(exp => {
                         user.expenses = exp;
+                        user.totalExpense = 0
+                        user.expenses.forEach(expense => {
+                            user.totalExpense += expense.balance;
+                        });
                         return user;
                     });
                 })
@@ -111,7 +119,7 @@ const getUserById = (userId) => {
                         return user;
                     });
                 })
-                .then(user=> {
+                .then(user => {
                     connection.close();
                     return filterUserFields(user);
                 })
@@ -136,6 +144,8 @@ const filterUserFields = (user) => {
         password,
         currency,
         income,
+        balance,
+        totalExpense,
         expenses,
         savings,
     } = user;
@@ -147,6 +157,8 @@ const filterUserFields = (user) => {
         password,
         currency,
         income,
+        balance,
+        totalExpense,
         expenses,
         savings
     };
@@ -171,6 +183,10 @@ const getUserByCredentials = (email, password) => {
                 }).then(user => {
                     return expenses.getExpensesByUserId(user.id).then(exp => {
                         user.expenses = exp;
+                        user.totalExpense = 0
+                        user.expenses.forEach(expense => {
+                            user.totalExpense += expense.balance;
+                        });
                         return user;
                     });
                 })
@@ -180,7 +196,7 @@ const getUserByCredentials = (email, password) => {
                         return user;
                     });
                 })
-                .then(user=> {
+                .then(user => {
                     connection.close();
                     return filterUserFields(user);
                 })
@@ -198,39 +214,38 @@ const getUserByCredentials = (email, password) => {
 
 const updateUserById = (userId, user) => {
     return getConnection()
-      .then(connection => {
-        return connection.query('SELECT COUNT(*) as Count FROM users WHERE id=?', [userId]).then(checkUserResult => {
-          if (checkUserResult[0][0].Count == 0) {
-            return Promise.reject({
-              code: 404,
-              description: 'Specified user doesn\'t exist'
+        .then(connection => {
+            return connection.query('SELECT COUNT(*) as Count FROM users WHERE id=?', [userId]).then(checkUserResult => {
+                if (checkUserResult[0][0].Count == 0) {
+                    return Promise.reject({
+                        code: 404,
+                        description: 'Specified user doesn\'t exist'
+                    });
+
+                } else {
+                    const sql = `UPDATE users SET name=?, surname=?, email=?, password=?, currency=?, income=?, balance=? WHERE id=?`;
+                    const data = [user.name, user.surname, user.email, user.password, user.currency, user.income, user.balance, userId];
+                    return connection.query(sql, data)
+                        .then(userResult => {
+                            connection.close();
+                            return true;
+                        })
+                }
             });
-            
-          } else {
-            const sql = `UPDATE users SET name=?, surname=?, email=?, password=?, currency=?, income=? WHERE id=?`;
-            const data = [user.name, user.surname, user.email, user.password, user.currency, user.income, userId];
-            return connection.query(sql, data)
-              .then(userResult => {
-                connection.close();
-                return true;
-              })
-          }
+        }).catch(err => {
+            if (typeof err.code == 'number') {
+                return Promise.reject(err);
+            } else {
+                return Promise.reject({
+                    code: 500,
+                    description: `Error updating user in the database. ${err.message}`
+                });
+            }
         });
-      }).catch(err => {
-        if (typeof err.code == 'number') {
-          return Promise.reject(err);
-        } else {
-          return Promise.reject({
-            code: 500,
-            description: `Error updating user in the database. ${err.message}`
-          });
-        }
-      });
-  }
+}
 
 module.exports = {
     getUserById,
     getUserByCredentials,
     updateUserById,
-  }
-  
+}

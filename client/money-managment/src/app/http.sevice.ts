@@ -10,7 +10,7 @@ import { AuthService } from './auth.sevice';
 })
 export class HttpService {
 
-  host: string = 'http://127.0.0.1:3000/api/';
+  host: string = 'http://127.0.0.1:3000/api';
 
   constructor(private http: HttpClient, private authService: AuthService) { }
 

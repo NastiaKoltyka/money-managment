@@ -13,6 +13,6 @@ export class AppComponent {
   title = 'user-system';
   date:number;
   constructor(public router: Router, public authService: AuthService ) { 
-    this.date=Date.now()
+    this.date=Date.now();
   }
 }

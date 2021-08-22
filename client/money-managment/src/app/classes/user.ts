@@ -10,6 +10,8 @@ export class User {
     savings:Category[];
     currency: string;
     income: number;
+    balance:number;
+    totalExpense:number;
 
     constructor(name: string, email: string, password: string) {
         this.id = 0;
@@ -21,5 +23,7 @@ export class User {
         this.savings=[];
         this.currency = '';
         this.income = 0;
+        this.balance=0;
+        this.totalExpense=0;
     }
 }

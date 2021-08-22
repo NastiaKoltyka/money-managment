@@ -40,7 +40,7 @@ const getExpensesByUserId = (userId) => {
 const getExpenseById = (id) => {
     return getConnection()
         .then(connection => {
-            return connection.query("SELECT id, category, picture, balance FROM expenses WHERE id=?", id)
+            return connection.query("SELECT id, category, picture, balance, user_id FROM expenses WHERE id=?", id)
                 .then(result => {
                     connection.close();
                     let row = result[0][0];
@@ -54,7 +54,8 @@ const getExpenseById = (id) => {
                         id: row.id,
                         category: row.category,
                         picture: row.picture,
-                        balance: row.balance
+                        balance: row.balance,
+                        userId: row.user_id
                     }
                 });
         })

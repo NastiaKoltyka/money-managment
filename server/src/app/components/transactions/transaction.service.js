@@ -4,11 +4,11 @@ const Saving = require('../shared/models/saving');
 
 const transferFromIncomeToSaving = (userId, savingId, amount) => {
     return User.getUserById(userId).then(user => {
-        if (user.income < amount){
+        if (user.income < amount) {
             return Promise.reject({
                 code: 400,
                 description: `You don't have enough money`
-              })
+            })
         }
 
         user.income -= amount;
@@ -23,19 +23,25 @@ const transferFromIncomeToSaving = (userId, savingId, amount) => {
 
 const transferFromSavingToExpense = (savingId, expenseId, amount) => {
     return Saving.getSavingById(savingId).then(saving => {
-        if (saving.balance < amount){
+        if (saving.balance < amount) {
             return Promise.reject({
                 code: 400,
                 description: `You don't have enough money`
-              })
+            })
         }
 
         saving.balance -= amount;
         return Saving.updateSavingById(savingId, saving).then(res => {
             return Expense.getExpenseById(expenseId).then(expense => {
                 expense.balance += amount;
-                return Expense.updateExpenseById(expenseId, expense);
+                return Expense.updateExpenseById(expenseId, expense).then(res => {
+                    return User.getUserById(expense.userId).then(user => {
+                        user.balance -= amount;
+                        return User.updateUserById(user.id, user);
+                    })
+                })
             });
+
         });
     });
 };
