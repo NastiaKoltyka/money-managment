@@ -26,6 +26,21 @@ export class AuthService {
                 this.user = this.helper.decodeToken<User>(this.token);
             });
     }
+
+    refreshUser(){
+        if(this.user.id > 0){
+            this.http.get<User>(`${this.host}/users/${this.user.id}`, { headers: { 'Authorization': `Bearer ${this.token}` } }).subscribe((data:User) => {
+                this.user = data;
+            });
+        }
+    }
+
+    logOut(){
+        this.token = '';
+        localStorage.setItem('token', this.token);
+        this.user = new User('','','');
+    }
+
     isLoggedIn() {
         return this.token.length !== 0;
     }

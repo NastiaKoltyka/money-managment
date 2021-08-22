@@ -19,7 +19,7 @@
             <div class="date"></div>
             <div>Date:{{date| date:'dd.MM.yyyy'}}</div>
         </div>
-        <div class="log-out-wrapper" [routerLink]="'/login'">
+        <div class="log-out-wrapper" (click)="logout()">
             <div class="log-out"></div>
             <div>LogOut</div>
         </div>

@@ -15,4 +15,9 @@ export class AppComponent {
   constructor(public router: Router, public authService: AuthService ) { 
     this.date=Date.now();
   }
+
+  logout(){
+    this.authService.logOut();
+    this.router.navigate(['/login']);
+  }
 }
