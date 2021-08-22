@@ -32,16 +32,6 @@ export class CalculatorComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  @HostListener('document:keypress', ['$event'])
-  handleKeyboardEvent(event: KeyboardEvent) {
-    this.key = event.key;
-    if (this.buttons.includes(this.key) && !this.focused) {
-      this.calculator.controls['number'].setValue(this.calculator.controls['number'].value + this.key);
-      this.focused = false;
-    }
-    this.key = ''
-
-  }
   pressButton(button: string) {
     this.calculator.controls['number'].setValue(this.calculator.controls['number'].value + button);
   }

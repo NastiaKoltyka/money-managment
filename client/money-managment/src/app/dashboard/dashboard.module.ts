@@ -5,6 +5,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { DashboardComponent } from '../dashboard/dashboard.component';
 import { CalculatorComponent } from '../calculator/calculator.component';
+import { KeypressDirective } from '../keypress.directive';
 
 
 
@@ -14,7 +15,8 @@ const routes: Routes = [
 @NgModule({
   declarations: [
     DashboardComponent,
-    CalculatorComponent
+    CalculatorComponent,
+    KeypressDirective,
   ],
   imports: [
     CommonModule,
