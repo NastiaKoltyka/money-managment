@@ -3,19 +3,16 @@
         <div class="income" [ngClass]="{selected: selectedIncome}">
             <p>INCOME</p>
             <div class="circle" (click)="selectIncome()"></div>
-            <p>{{userIncome}}{{userCurrency}}</p>
+            <p>{{userIncome | usercurrency:userCurrency}}</p>
         </div>
     </div>
     <div class="block" [ngClass]="{highlighted: selectedIncome }">
         <div class="block-title">Savings</div>
         <div class="categories">
-            <div class="category" *ngFor="let saving of savings; let i = index"
-                [ngClass]="{selected: i == selectedSaving}">
+            <div class="category" *ngFor="let saving of savings; let i = index" [ngClass]="{selected: i == selectedSaving}">
                 <p>{{saving.category}}</p>
-                <div class="circle"
-                    style="background-image:  url('http://localhost:3000/api/images/{{saving.picture}}')"
-                    (click)="selectSaving(i)"></div>
-                <p>{{saving.balance}} {{userCurrency}}</p>
+                <div class="circle" style="background-image:  url('http://localhost:3000/api/images/{{saving.picture}}')" (click)="selectSaving(i)"></div>
+                <p>{{saving.balance | usercurrency:userCurrency}}</p>
             </div>
             <div>
                 <div class="circle circle-add"></div>
@@ -25,13 +22,10 @@
     <div class="block" [ngClass]="{highlighted: selectedSaving!=-1 }">
         <div class="block-title">Spends</div>
         <div class="categories">
-            <div class="category" *ngFor="let expens of expenses; let i = index"
-                [ngClass]="{selected: i == selectedSpend}">
+            <div class="category" *ngFor="let expens of expenses; let i = index" [ngClass]="{selected: i == selectedSpend}">
                 <p>{{expens.category}}</p>
-                <div class="circle"
-                    style="background-image:  url('http://localhost:3000/api/images/{{expens.picture}}')"
-                    (click)="selectSpend(i)"></div>
-                <p>{{expens.balance}}{{userCurrency}}</p>
+                <div class="circle" style="background-image:  url('http://localhost:3000/api/images/{{expens.picture}}')" (click)="selectSpend(i)"></div>
+                <p>{{expens.balance | usercurrency:userCurrency}}</p>
             </div>
             <div>
                 <div class="circle circle-add"></div>
