@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { AuthService } from '../auth.sevice';
 
 import { Category } from '../classes/category';
 import { User } from '../classes/user';
@@ -22,7 +23,7 @@ export class DashboardComponent implements OnInit {
   calculatorVisible: boolean;
   result: number;
 
-  constructor(public activatedRout: ActivatedRoute, private httpService: HttpService) {
+  constructor(public activatedRout: ActivatedRoute, private httpService: HttpService, private authService: AuthService) {
     this.userId = 0;
     this.userIncome=0
     this.userCurrency='';
@@ -112,6 +113,7 @@ export class DashboardComponent implements OnInit {
       this.userIncome=data.income;
       this.savings = data.savings;
       this.expenses = data.expenses;
+      this.authService.user = data;
     })
   }
 }

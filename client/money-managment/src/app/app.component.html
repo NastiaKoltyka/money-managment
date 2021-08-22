@@ -9,11 +9,11 @@
         </div>
         <div class="balance-wrapper">
             <div class="balance"></div>
-            <div>BALANCE:{{authService.user.balance}}</div>
+            <div>BALANCE:{{authService.user.balance | usercurrency:authService.user.currency}}</div>
         </div>
         <div class="expenses-wrapper">
             <div class="expenses"></div>
-            <div>EXPENSES: {{authService.user.totalExpense}}</div>
+            <div>EXPENSES: {{authService.user.totalExpense | usercurrency:authService.user.currency}}</div>
         </div>
         <div class="date-wrapper">
             <div class="date"></div>
