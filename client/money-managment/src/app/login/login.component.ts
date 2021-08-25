@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { ToastrService } from 'ngx-toastr';
 import {Router} from '@angular/router';
 
 import { Credentials } from '../classes/credentials'
 import { AuthService } from '..//auth.sevice';
+import { NotificationsService } from '../notifications.service';
 
 
 @Component({
@@ -14,7 +14,7 @@ import { AuthService } from '..//auth.sevice';
 })
 export class LoginComponent implements OnInit {
   loginUser: Credentials;
-  constructor(private authService: AuthService, private toastr: ToastrService, private router: Router) {
+  constructor(private authService: AuthService, private notificationsService: NotificationsService, private router: Router) {
     this.loginUser = new Credentials('', '')
   }
 
@@ -28,7 +28,7 @@ export class LoginComponent implements OnInit {
         this.router.navigate(['/dashboard']);
       })
       .catch(error => {
-        this.toastr.error(error.message, 'Error!');
+        this.notificationsService.error(error.message);
       });
   }
 
