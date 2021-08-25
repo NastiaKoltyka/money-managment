@@ -11,13 +11,28 @@ import { AuthService } from './auth.sevice';
 })
 export class AppComponent {
   title = 'user-system';
-  date:number;
-  constructor(public router: Router, public authService: AuthService ) { 
-    this.date=Date.now();
+  date: number;
+  visible: boolean;
+  sideBarOpened: boolean;
+  constructor(public router: Router, public authService: AuthService) {
+    this.date = Date.now();
+    this.visible = false;
+    this.sideBarOpened = false;
   }
 
-  logout(){
+  logout() {
     this.authService.logOut();
     this.router.navigate(['/login']);
+    this.sideBarOpened = false;
+    this.visible = false;
+
+  }
+  openSidebar() {
+    this.visible = true;
+    setTimeout(() => {this.sideBarOpened = true;}, 100);
+  }
+  closeSidebar() {
+    this.sideBarOpened = false;
+    setTimeout(() => {this.visible = false;}, 500);
   }
 }

@@ -19,10 +19,11 @@
   display: flex;
   line-height: 53px;
 }
-.wrapper div{
-    display: flex;
-    margin: 3px 0px 0px 30px;
-    white-space: nowrap;
+
+.wrapper div {
+  display: flex;
+  margin: 3px 0px 0px 30px;
+  white-space: nowrap;
 }
 
 .picture {
@@ -59,9 +60,71 @@
 .date {
   background-image: url(pictures/calendar.svg);
 }
-.log-out{
-    background-image: url(pictures/log-out.svg);
+
+.log-out {
+  background-image: url(pictures/log-out.svg);
 }
-.log-out-wrapper{
-    cursor: pointer;
+
+.log-out-wrapper {
+  cursor: pointer;
+}
+
+.link-container {
+  width: 100vw;
+  height: 100vh;
+  position: absolute;
+  background-color: rgb(10 10 10 / 41%);
+  top: 0;
+}
+
+.sideBar {
+  width: 400px;
+  height: 700px;
+  position: relative;
+  border: 1px solid black;
+  background-color: white;
+  top: 106px;
+  left: -400px;
+  transition: left 0.5s;
+  box-shadow: 0px 1px 8px 7px rgba(34, 60, 80, 0.37);
+}
+
+.sideBar.open {
+  left: 0px;
+}
+
+.button {
+  border-bottom: 1px solid rgb(133, 236, 133);
+  height: 74px;
+  width: 304px;
+  margin: auto;
+  font-size: 20px;
+  line-height: 115px;
+  cursor: pointer;
+  display: flex;
+}
+
+.close {
+  color: red;
+  font-size: 40px;
+  position: relative;
+  left: 350px;
+  cursor: pointer;
+}
+.profile, .settings, .history, .statistic, .logOut{
+  background-image: url(pictures/profile.svg);
+  width: 40px;
+  height: 40px;
+  background-size: contain;
+  margin-top: 25px;
+  margin-right: 27px;
+}
+.settings{
+  background-image: url(pictures/setting.svg);
+}
+.history{
+  background-image: url(pictures/calendar-mini.svg);
+}
+.logOut{
+  background-image: url(pictures/log-out-mini.svg);
 }
