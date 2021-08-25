@@ -28,6 +28,10 @@
 <div class="link-container" *ngIf="visible" (click)="closeSidebar()">
   <div class="sideBar" [ngClass]="{'open': sideBarOpened}">
     <div (click)="closeSidebar()" class="close">X</div>
+    <div class="button" [routerLink]="'/dashboard'">
+      <div class="dashboard"></div>
+      <p> Dashboard</p>
+    </div>
     <div [routerLink]="'/my-profile'" class="button">
       <div class="profile"></div>
       <p>My Profile</p>
@@ -50,5 +54,6 @@
     </div>
   </div>
 </div>
-
-<router-outlet></router-outlet>
+<div class="container">
+  <router-outlet></router-outlet>
+</div>

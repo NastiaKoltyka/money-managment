@@ -99,7 +99,7 @@
   width: 304px;
   margin: auto;
   font-size: 20px;
-  line-height: 115px;
+  line-height: 90px;
   cursor: pointer;
   display: flex;
 }
@@ -111,7 +111,7 @@
   left: 350px;
   cursor: pointer;
 }
-.profile, .settings, .history, .statistic, .logOut{
+.profile, .settings, .history, .statistic, .logOut, .dashboard{
   background-image: url(pictures/profile.svg);
   width: 40px;
   height: 40px;
@@ -127,4 +127,14 @@
 }
 .logOut{
   background-image: url(pictures/log-out-mini.svg);
+}
+.dashboard{
+  background-image: url(../../pictures/dashboard.svg);
+}
+.container {
+  min-height: 750px;
+  width: 100%;
+  max-width: 1600px;
+  margin: 45px auto;
+  box-shadow: 0px 0px 18px 7px rgba(34, 60, 80, 0.2);
 }
