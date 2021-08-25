@@ -3,6 +3,6 @@ module.exports = {
     host: "127.0.0.1",
     port: 3306,
     user: "root",
-    password: "12345678",
+    password: "5669n3o",
     sekretKey: "money-money"
 }
