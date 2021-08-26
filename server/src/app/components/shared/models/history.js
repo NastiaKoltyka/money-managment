@@ -21,8 +21,8 @@ const getHistoryByUserId = (userId) => {
                     return result[0].map(row => {
                         return {
                             date: row.date,
-                            expense_id: row.expense_id,
-                            saving_id: row.saving_id,
+                            expenseId: row.expense_id,
+                            savingId: row.saving_id,
                             amount: row.amount,
                         }
                     });
