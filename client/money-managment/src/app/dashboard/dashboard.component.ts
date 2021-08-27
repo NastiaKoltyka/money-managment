@@ -34,6 +34,12 @@ export class DashboardComponent implements OnInit {
     this.selectedSpend = -1;
     this.calculatorVisible = false;
     this.result = 0;
+
+    this.authService.userRefresh.subscribe((data:User) => {
+      this.userIncome=data.income;
+      this.savings = data.savings;
+      this.expenses = data.expenses;
+    });
   }
 
   ngOnInit(): void {
@@ -85,7 +91,6 @@ export class DashboardComponent implements OnInit {
     this.selectedSpend = -1;
   }
   applyTransaction(result: number) {
-    console.log(this.selectedIncome, this.selectedSaving != -1, this.selectedSaving)
     if (this.selectedIncome && this.selectedSaving != -1) {
       this.httpService.transferFromIncomeToSaving(this.userId, this.savings[this.selectedSaving].id, result).subscribe(() => {
         this.refreshUser()
@@ -113,11 +118,5 @@ export class DashboardComponent implements OnInit {
   }
   refreshUser(){
     this.authService.refreshUser();
-    this.httpService.getUser(this.userId).subscribe((data:User) => {
-      this.userIncome=data.income;
-      this.savings = data.savings;
-      this.expenses = data.expenses;
-      this.authService.user = data;
-    })
   }
 }
