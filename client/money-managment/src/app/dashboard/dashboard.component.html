@@ -6,8 +6,10 @@
             <p>{{userIncome | usercurrency:userCurrency}}</p>
         </div>
     </div>
+
     <div class="block" [ngClass]="{highlighted: selectedIncome }">
         <div class="block-title">Savings</div>
+        <mat-divider></mat-divider>
         <div class="categories">
             <div class="category" *ngFor="let saving of savings; let i = index" [ngClass]="{selected: i == selectedSaving}">
                 <p>{{saving.category}}</p>
@@ -19,8 +21,10 @@
             </div>
         </div>
     </div>
+
     <div class="block" [ngClass]="{highlighted: selectedSaving!=-1 && !selectedIncome }">
         <div class="block-title">Spends</div>
+        <mat-divider></mat-divider>
         <div class="categories">
             <div class="category" *ngFor="let expens of expenses; let i = index" [ngClass]="{selected: i == selectedSpend}">
                 <p>{{expens.category}}</p>

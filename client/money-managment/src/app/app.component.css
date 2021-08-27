@@ -18,11 +18,13 @@
   background-color: rgb(133, 236, 133);
   display: flex;
   line-height: 53px;
+  justify-content: space-around;
+  font-size: 18px;
 }
 
 .wrapper div {
   display: flex;
-  margin: 3px 0px 0px 30px;
+  margin: 3px 10px 0px 10px;
   white-space: nowrap;
 }
 
@@ -104,35 +106,22 @@
   display: flex;
 }
 
-.close {
-  color: red;
-  font-size: 40px;
-  position: relative;
-  left: 350px;
-  cursor: pointer;
-}
+
 .profile, .settings, .history, .statistic, .logOut, .dashboard{
-  background-image: url(pictures/profile.svg);
-  width: 40px;
-  height: 40px;
-  background-size: contain;
-  margin-top: 25px;
   margin-right: 27px;
 }
-.settings{
-  background-image: url(pictures/setting.svg);
+.material-icons{
+  font-size: 39px;
+  line-height: inherit;
+  color: grey;
 }
-.history{
-  background-image: url(pictures/calendar-mini.svg);
+.close{
+  text-align: right;
 }
-.logOut{
-  background-image: url(pictures/log-out-mini.svg);
-}
-.dashboard{
-  background-image: url(pictures/dashboard.svg);
-}
-.statistic{
-  background-image: url(pictures/statistic.svg);
+.close .material-icons  {
+  color: red;
+  margin: 18px 10px;
+  cursor: pointer;
 }
 .container {
   min-height: 750px;

@@ -7,6 +7,7 @@ import { DashboardComponent } from '../dashboard/dashboard.component';
 import { CalculatorComponent } from '../calculator/calculator.component';
 import { KeypressDirective } from '../keypress.directive';
 import { SharedModule } from '../shared.module';
+import { MaterialModule } from '../shared/material/material.module';
 
 
 const routes: Routes = [
@@ -24,6 +25,7 @@ const routes: Routes = [
     ReactiveFormsModule,
     SharedModule,
     RouterModule.forChild(routes),
+    MaterialModule,
   ]
 })
 export class DashboardModule { }

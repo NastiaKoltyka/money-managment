@@ -17,7 +17,7 @@
     </div>
     <div class="date-wrapper">
       <div class="date"></div>
-      <div>Date:{{date| date:'dd.MM.yyyy'}}</div>
+      <div>DATE: {{date| date:'dd.MM.yyyy'}}</div>
     </div>
     <div class="log-out-wrapper" (click)="logout()">
       <div class="log-out"></div>
@@ -27,33 +27,55 @@
 </div>
 <div class="link-container" *ngIf="visible" (click)="closeSidebar()">
   <div class="sideBar" [ngClass]="{'open': sideBarOpened}">
-    <div (click)="closeSidebar()" class="close">X</div>
+    <div (click)="closeSidebar()" class="close"><span class="material-icons">
+        close
+      </span>
+    </div>
     <div class="button" [routerLink]="'/dashboard'">
-      <div class="dashboard"></div>
+      <div class="dashboard">
+        <span class="material-icons">
+          dashboard
+        </span>
+      </div>
       <p> Dashboard</p>
     </div>
     <div [routerLink]="'/my-profile'" class="button">
-      <div class="profile"></div>
+      <div class="profile"><span class="material-icons">
+          manage_accounts
+        </span>
+      </div>
       <p>My Profile</p>
     </div>
     <div [routerLink]="'/settings'" class="button">
-      <div class="settings"></div>
+      <div class="settings"><span class="material-icons">
+          settings
+        </span>
+      </div>
       <p>Settings</p>
     </div>
     <div [routerLink]="'/history'" class="button">
-      <div class="history"></div>
+      <div class="history"> <span class="material-icons">
+          event
+        </span>
+      </div>
       <p>History</p>
     </div>
     <div [routerLink]="'/statistic'" class="button">
-      <div class="statistic"></div>
+      <div class="statistic"> <span class="material-icons">
+          equalizer
+        </span>
+      </div>
       <p>Statistic</p>
     </div>
     <div (click)="logout()" class="button">
-      <div class="logOut"></div>
+      <div class="logOut"> <span class="material-icons">
+        logout
+        </span>
+        </div>
       <p> LogOut</p>
     </div>
   </div>
 </div>
-<div class="container"[ngClass]="{'border-hidden': router.url=='/login'}">
+<div class="container" [ngClass]="{'border-hidden': router.url=='/login'}">
   <router-outlet></router-outlet>
 </div>
