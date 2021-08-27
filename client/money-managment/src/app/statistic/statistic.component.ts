@@ -14,14 +14,15 @@ import { Statistic } from '../classes/statistic';
 export class StatisticComponent implements OnInit {
 
   constructor(private httpService: HttpService, private authService: AuthService) {
-    this.httpService.getSavingStatistic(authService.user.id).subscribe((data: Statistic) => {
-      console.log('Saving statistic:', data)
-    })
-    this.httpService.getExpenseStatistic(authService.user.id).subscribe((data: Statistic) => {
-      console.log('Expense statistic:', data)
-    })
+
   }
   ngOnInit(): void {
+    this.httpService.getSavingStatistic(this.authService.user.id).subscribe((data: Statistic) => {
+      console.log('Saving statistic:', data)
+    })
+    this.httpService.getExpenseStatistic(this.authService.user.id).subscribe((data: Statistic) => {
+      console.log('Expense statistic:', data)
+    })
   }
 
 }

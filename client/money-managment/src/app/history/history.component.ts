@@ -12,12 +12,13 @@ import { HttpService } from '../http.sevice';
 })
 export class HistoryComponent implements OnInit {
   constructor(private httpService: HttpService, private authService: AuthService) {
-    this.httpService.getHistory(authService.user.id).subscribe((data: History) => {
-      console.log(data)
-    })
+   
   }
 
   ngOnInit(): void {
+    this.httpService.getHistory(this.authService.user.id).subscribe((data: History) => {
+      console.log(data)
+    })
   }
 
 }
