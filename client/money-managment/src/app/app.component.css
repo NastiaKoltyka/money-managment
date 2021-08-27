@@ -129,7 +129,10 @@
   background-image: url(pictures/log-out-mini.svg);
 }
 .dashboard{
-  background-image: url(../../pictures/dashboard.svg);
+  background-image: url(pictures/dashboard.svg);
+}
+.statistic{
+  background-image: url(pictures/statistic.svg);
 }
 .container {
   min-height: 750px;
@@ -137,4 +140,7 @@
   max-width: 1600px;
   margin: 45px auto;
   box-shadow: 0px 0px 18px 7px rgba(34, 60, 80, 0.2);
+}
+.container.border-hidden {
+  box-shadow: none;
 }

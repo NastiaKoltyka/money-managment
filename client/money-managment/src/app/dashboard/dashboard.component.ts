@@ -47,15 +47,18 @@ export class DashboardComponent implements OnInit {
   }
 
   selectSpend(index: number) {
-    if (this.selectedSaving != -1) {
+    if (this.selectedSaving != -1 ) {
       this.calculatorVisible = true;
       this.selectedSpend = index;
+      
     }
+    
     else {
       alert('First choose saving');
       this.selectedSpend = -1;
       this.selectedSaving = -1;
       this.selectedIncome = false;
+      
     }
   }
 
