@@ -1,23 +1,22 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { PasswordPopupComponent } from './password-popup.component';
 import { RouterModule, Routes } from '@angular/router';
-
-import { MyProfileComponent } from './my-profile.component';
 import { MaterialModule } from '../shared/material/material.module';
 
 
 
 const routes: Routes = [
-  { path: '', component: MyProfileComponent}]
+  { path: '', component:PasswordPopupComponent}]
 
 
 @NgModule({
-  declarations: [MyProfileComponent],
+  declarations: [PasswordPopupComponent],
   imports: [
     CommonModule,
     RouterModule.forChild(routes),
     MaterialModule
-
   ]
 })
-export class MyProfileModule { }
+
+export class PasswordPopupModule { }

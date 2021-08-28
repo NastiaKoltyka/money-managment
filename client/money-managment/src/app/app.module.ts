@@ -9,11 +9,13 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SharedModule } from './shared.module';
 import { MaterialModule } from './shared/material/material.module';
+import { PasswordPopupComponent } from './password-popup/password-popup.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
+    PasswordPopupComponent,
   ],
   imports: [
     BrowserModule,

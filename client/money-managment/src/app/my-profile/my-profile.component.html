@@ -1,14 +1,19 @@
-<div>
-    <p><b>Name:</b> {{user.name}}</p>
-    <p><b>Surname:</b> {{user.surname}}</p>
-    <!-- <p><b>Email:</b> {{user.email}}</p>
-    <p><b>Password:</b> ********</p>
-    <p><b>Phone:</b> {{user.phone}}</p>
-    <p><b>Date of birth:</b> {{user.date_of_birth}}</p>
-    <p><b>About me:</b> {{user.about_me}}</p>
-    <p><b>User created at:</b> {{user.created_at | date:'dd.MM.yyyy HH:mm'}}</p>
-    <p><b>User updated at:</b> {{user.updated_at | date:'dd.MM.yyyy HH:mm'}}</p> -->
+<div class="details-container">
+  <div class="card-container">
+    <p class="title">User Details</p>
+    <div class="card-content">
+      <div class="avatar"></div>
+      <div class="user-info">
+        <p><b>Name:</b> {{user.name}}</p>
+        <p><b>Surname:</b> {{user.surname}}</p>
+        <p><b>Email:</b> {{user.email}}</p>
+        <p><b>Password:</b> ********</p>
+        <p><b>Balance:</b> {{user.balance}} {{user.currency}}</p>
+      </div>
+    </div>
+    <div class="buttons">
+      <button mat-button class="change-password" (click)="openDialog()">Change password</button>
+      <button mat-button (click)="backClicked()" >Back</button>
+    </div>
   </div>
-  
-  
-  
+</div>

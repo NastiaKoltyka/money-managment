@@ -1,0 +1,50 @@
+.details-container{
+    background-color: #f3f3f3;
+    width: 70%;
+    height: 500px;
+    margin: auto;
+    padding: 50px;
+}
+.title {
+    margin-bottom: 30px;
+    text-align: center;
+    font-size: 34px;
+    font-weight: 500;
+}
+.card-container{
+    min-height: 400px;
+    background-color: white;
+    padding: 50px;
+}
+.avatar{
+    background-image: url(pictures/avatars/2754576_woman_female_avatar_icon.svg);
+    width: 190px;
+    height: 190px;
+    background-size: cover;
+}
+.card-content{
+    display: flex;
+    display: flex;
+    justify-content: space-evenly;
+    font-size: 20px;
+
+}
+.user-info{
+    margin-top: 10px;
+}
+.mat-button{
+    color: black;
+    background-color: rgb(133, 236, 133);
+    margin-left: 10px;
+}
+.mat-focus-indicator {
+    z-index: 1;
+}
+.buttons{
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 24px;
+}
+.mat-button.change-password{
+    background-color: #ffe754;
+}
