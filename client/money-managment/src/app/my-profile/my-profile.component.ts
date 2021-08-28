@@ -14,14 +14,14 @@ import { PasswordPopupComponent } from '../password-popup/password-popup.compone
 })
 export class MyProfileComponent implements OnInit {
   user:User;
-  constructor( private authService:AuthService, private _location: Location, public dialog: MatDialog) { 
+  constructor( private authService:AuthService, private location: Location, public dialog: MatDialog) { 
     this.user=this.authService.user;
   }
 
   ngOnInit(): void {
   }
   backClicked() {
-    this._location.back();
+    this.location.back();
   }
   openDialog(): void {
     const dialogRef = this.dialog.open(PasswordPopupComponent, {

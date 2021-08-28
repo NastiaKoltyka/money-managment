@@ -9,8 +9,6 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SharedModule } from './shared.module';
 import { MaterialModule } from './shared/material/material.module';
-import { PasswordPopupModule } from './password-popup/password-popup.module';
-
 
 
 @NgModule({
@@ -26,8 +24,7 @@ import { PasswordPopupModule } from './password-popup/password-popup.module';
     FormsModule,
     ReactiveFormsModule,
     SharedModule,
-    MaterialModule,
-    PasswordPopupModule
+    MaterialModule
   ],
   providers: [DatePipe],
   bootstrap: [AppComponent]
