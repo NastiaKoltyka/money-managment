@@ -25,14 +25,14 @@ export class MyProfileComponent implements OnInit {
   }
   openDialog(): void {
     const dialogRef = this.dialog.open(PasswordPopupComponent, {
-      width: '250px',
+      width: '300px',
+      height: '280px',
       data: ''
     });
 
     dialogRef.afterClosed().subscribe(result => {
       console.log('The dialog was closed');
       console.log('Result: ', result);
-      /*this.user.password = result;*/
     });
   }
 }

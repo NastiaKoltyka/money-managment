@@ -6,6 +6,7 @@ import { FormsModule } from '@angular/forms';
 import { MyProfileComponent } from './my-profile.component';
 import { MaterialModule } from '../shared/material/material.module';
 import { PasswordPopupComponent } from '../password-popup/password-popup.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 
@@ -19,7 +20,8 @@ const routes: Routes = [
     CommonModule,
     RouterModule.forChild(routes),
     MaterialModule,
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule
   ]
 })
 export class MyProfileModule { }
