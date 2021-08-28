@@ -9,24 +9,25 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SharedModule } from './shared.module';
 import { MaterialModule } from './shared/material/material.module';
-import { PasswordPopupComponent } from './password-popup/password-popup.component';
+import { PasswordPopupModule } from './password-popup/password-popup.module';
+
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    PasswordPopupComponent,
   ],
   imports: [
     BrowserModule,
     CoreModule,
     HttpClientModule,
     BrowserAnimationsModule,
-    
     NgbModule,
-    FormsModule, ReactiveFormsModule,
+    FormsModule,
+    ReactiveFormsModule,
     SharedModule,
     MaterialModule,
+    PasswordPopupModule
   ],
   providers: [DatePipe],
   bootstrap: [AppComponent]

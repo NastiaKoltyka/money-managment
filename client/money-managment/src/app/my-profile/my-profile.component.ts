@@ -3,7 +3,8 @@ import { AuthService } from '../auth.sevice';
 import { User } from '../classes/user';
 import {Location} from '@angular/common';
 
-import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
+import {MatDialog } from '@angular/material/dialog';
+import { PasswordPopupComponent } from '../password-popup/password-popup.component';
 
 
 @Component({
@@ -13,7 +14,7 @@ import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog
 })
 export class MyProfileComponent implements OnInit {
   user:User;
-  constructor( private authService:AuthService, private _location: Location) { 
+  constructor( private authService:AuthService, private _location: Location, public dialog: MatDialog) { 
     this.user=this.authService.user;
   }
 
@@ -21,5 +22,17 @@ export class MyProfileComponent implements OnInit {
   }
   backClicked() {
     this._location.back();
+  }
+  openDialog(): void {
+    const dialogRef = this.dialog.open(PasswordPopupComponent, {
+      width: '250px',
+      data: ''
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+      console.log('Result: ', result);
+      /*this.user.password = result;*/
+    });
   }
 }
