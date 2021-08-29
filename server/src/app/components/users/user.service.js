@@ -8,7 +8,12 @@ const getUserByCredentials = (email, password) => {
     return User.getUserByCredentials(email, password);
 };
 
+const updateUserById = (userId, user) => {
+    return User.updateUserById(userId, user);
+}
+
 module.exports = {
     getUserById,
-    getUserByCredentials
+    getUserByCredentials,
+    updateUserById
 };
