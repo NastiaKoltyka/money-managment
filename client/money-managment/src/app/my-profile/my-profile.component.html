@@ -2,30 +2,36 @@
   <div class="card-container">
     <p class="title">User Details</p>
     <div class="card-content">
-      <div class="avatar"></div>
+      <div class="avatar" (click)="openPictureDialog()" style="background-image:  url('http://localhost:3000/api/images/{{(changePicture?userPicture:user.picture)}}')" ></div>
       <div class="user-info">
         <div>
           <b>Name:</b>
           <p (click)="openChangeDialog('name')" class="edit" [hidden]="changeName">{{ user.name}}</p>
-          <input type="text" *ngIf="changeName">
+          <input type="text" *ngIf="changeName"[formControl]="userName">
         </div>
         <div>
           <b>Surname:</b>
-          <p (click)="openChangeDialog('surname')" class="edit" [hidden]="changeSurName">{{ user.surname}}</p>
-          <input type="text" *ngIf="changeSurName">
+          <p (click)="openChangeDialog('surname')" class="edit" [hidden]="changeSurname">{{ user.surname}}</p>
+          <input type="text" *ngIf="changeSurname"[formControl]="userSurname">
         </div>
         <div>
           <b>Email:</b>
           <p (click)="openChangeDialog('email')" class="edit" [hidden]="changeEmail">{{ user.email}}</p>
-          <input type="email" *ngIf="changeEmail">
+          <input type="email" *ngIf="changeEmail"[formControl]="userEmail">
         </div>
         <p><b>Password:</b> ********</p>
         <p><b>Balance:</b> {{user.balance}} {{user.currency}}</p>
+        <p><b>Date:</b> {{date|date:'dd.MM.yyyy'}}</p>
       </div>
     </div>
     <div class="buttons">
+      <div *ngIf="changeName||changeSurname||changeEmail||changePicture||changePassword">
+        <button mat-button class="save" (click)="save()">Save</button>
+        <button mat-button class="cancel" (click)="cancel()">Cancel</button>
+      </div>
       <button mat-button (click)="openDialog()" class="change-password">Change password</button>
       <button mat-button (click)="backClicked()">Back</button>
     </div>
   </div>
 </div>
+

@@ -9,6 +9,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatRippleModule } from '@angular/material/core';
+import { MatGridListModule } from '@angular/material/grid-list';
 
 
 @NgModule({
@@ -22,7 +23,8 @@ import { MatRippleModule } from '@angular/material/core';
     MatDialogModule,
     MatFormFieldModule,
     MatInputModule,
-    MatRippleModule
+    MatRippleModule,
+    MatGridListModule
   ],
   exports: [
     MatToolbarModule,
@@ -33,7 +35,8 @@ import { MatRippleModule } from '@angular/material/core';
     MatDialogModule,
     MatFormFieldModule,
     MatInputModule,
-    MatRippleModule
+    MatRippleModule,
+    MatGridListModule
   ]
 })
 export class MaterialModule { }

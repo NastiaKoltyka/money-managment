@@ -20,6 +20,7 @@ const getConnection = () => {
             email varchar(255) not null,
             currency varchar(255) not null,
             income float not null,
+            picture varchar(500),
             balance int,
             password varchar(255) not null);`;
 
@@ -51,7 +52,7 @@ const getConnection = () => {
         amount int,
         FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE);`
 
-    const insertUser = `INSERT INTO users (name,surname, email, password, currency, income, balance)  VALUES ?`;
+    const insertUser = `INSERT INTO users (name,surname, email, password, currency, income, balance, picture)  VALUES ?`;
 
     const insertExpenseTable = `INSERT INTO expenses (user_id, category, picture, balance) VALUES ?`
     const insertSavingTable = `INSERT INTO savings (user_id, category, picture, balance) VALUES ?`
@@ -63,9 +64,9 @@ const getConnection = () => {
                     if (usersCountResult[0][0].Count == 0) {
                         return connection.query(insertUser, [
                                 [
-                                    ['admin', 'admin', 'admin@gmail.com', 'admin', 'UAH', 20000, 29500],
-                                    ['Petro', 'Petrov', 'petro@gmail.com', '12345', 'UAH', 1200, 2100],
-                                    ['Ira', 'Ivanova', 'ira@gmail.com', '1111', 'UAH', 6000, 31923]
+                                    ['admin', 'admin', 'admin@gmail.com', 'admin', 'UAH', 20000, 29500,'2754576_woman_female_avatar_icon.svg'],
+                                    ['Petro', 'Petrov', 'petro@gmail.com', '12345', 'UAH', 1200, 2100,'2754582_business_man_man_avatar_icon.svg'],
+                                    ['Ira', 'Ivanova', 'ira@gmail.com', '1111', 'UAH', 6000, 31923,'2754580_woman_business_woman_avatar_female_icon.svg']
                                 ]
                             ])
                             .then(createExpenseResult => {
@@ -158,6 +159,7 @@ const filterUserFields = (user) => {
         totalExpense,
         expenses,
         savings,
+        picture,
     } = user;
     let plainUser = {
         id,
@@ -170,7 +172,8 @@ const filterUserFields = (user) => {
         balance,
         totalExpense,
         expenses,
-        savings
+        savings,
+        picture,
     };
     return plainUser
 }
@@ -233,8 +236,8 @@ const updateUserById = (userId, user) => {
                     });
 
                 } else {
-                    const sql = `UPDATE users SET name=?, surname=?, email=?, password=?, currency=?, income=?, balance=? WHERE id=?`;
-                    const data = [user.name, user.surname, user.email, user.password, user.currency, user.income, user.balance, userId];
+                    const sql = `UPDATE users SET name=?, surname=?, email=?, password=?, currency=?, income=?, balance=?, picture=? WHERE id=?`;
+                    const data = [user.name, user.surname, user.email, user.password, user.currency, user.income, user.balance, user.picture, userId];
                     return connection.query(sql, data)
                         .then(userResult => {
                             connection.close();

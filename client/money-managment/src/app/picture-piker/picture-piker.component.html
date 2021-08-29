@@ -1,0 +1,10 @@
+<h1 mat-dialog-title>Change icon</h1>
+<div mat-dialog-content >
+    <mat-grid-list cols="3" rowHeight="1:1">
+        <mat-grid-tile *ngFor="let icon of icons" style="background-image:  url('http://localhost:3000/api/images/{{icon}}')" (click)="choosePicture(icon)"></mat-grid-tile>
+      </mat-grid-list>
+  <div mat-dialog-actions>
+    <button mat-button cdkFocusInitial (click)="saveChange()">Ok</button>
+    <button mat-button (click)="onNoClick()">Cancel</button>
+  </div>
+</div>

@@ -20,10 +20,11 @@
 }
 
 .avatar {
-  background-image: url(pictures/avatars/2754576_woman_female_avatar_icon.svg);
+  background-image: url(http://localhost:3000/api/images/2754576_woman_female_avatar_icon.svg);
   width: 190px;
   height: 190px;
   background-size: cover;
+  cursor: pointer;
 }
 
 .card-content {
@@ -59,13 +60,18 @@
   background-color: #ffe754;
 }
 
-.edit:hover::after {
+.edit:hover::after, .avatar:hover::after {
   font-family: 'Material Icons';
   content: "edit";
   position: absolute;
   padding-left: 5px;
 }
-
+.avatar:hover::after {
+  padding-left: 161px;
+}
+.user-info div p{
+  margin-left: 10px;
+}
 .user-info div {
   display: flex;
 }
@@ -79,4 +85,10 @@ input {
   margin-left: 10px;
   margin-bottom: 12px;
   outline: none;
+}
+.save{
+  background-color: #5754ff;
+}
+.cancel{
+  background-color: rgb(240, 86, 86);
 }

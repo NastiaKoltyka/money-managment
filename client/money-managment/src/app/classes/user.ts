@@ -11,6 +11,7 @@ export class User {
     currency: string;
     income: number;
     balance:number;
+    picture:string;
     totalExpense:number;
 
     constructor(name: string, email: string, password: string) {
@@ -25,5 +26,6 @@ export class User {
         this.income = 0;
         this.balance=0;
         this.totalExpense=0;
+        this.picture='';
     }
 }

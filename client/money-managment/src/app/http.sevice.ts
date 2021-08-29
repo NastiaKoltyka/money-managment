@@ -38,6 +38,10 @@ export class HttpService {
   getExpenseStatistic(userId: number ): Observable<Statistic> {
     return this.http.get<Statistic>(`${this.host}/statistics/expense-distribution/${userId}`, this.getAuthHeader());
   }
+  updateUser(userId: number, user: User ): Observable<void> {
+    return this.http.post<void>(`${this.host}/users/${userId}`,user, this.getAuthHeader());
+  }
+  
 
   private getAuthHeader() {
     return { headers: { 'Authorization': `Bearer ${this.authService.token}` } } 

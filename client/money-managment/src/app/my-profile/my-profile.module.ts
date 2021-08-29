@@ -8,6 +8,7 @@ import { MaterialModule } from '../shared/material/material.module';
 import { PasswordPopupComponent } from '../password-popup/password-popup.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { ConfirmPopupDialogComponent } from '../confirm-popup.dialog/confirm-popup.dialog.component';
+import { PicturePikerComponent } from '../picture-piker/picture-piker.component';
 
 
 
@@ -16,7 +17,7 @@ const routes: Routes = [
 
 
 @NgModule({
-  declarations: [MyProfileComponent, PasswordPopupComponent, ConfirmPopupDialogComponent],
+  declarations: [MyProfileComponent, PasswordPopupComponent, ConfirmPopupDialogComponent,PicturePikerComponent],
   imports: [
     CommonModule,
     RouterModule.forChild(routes),

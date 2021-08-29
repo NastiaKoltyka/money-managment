@@ -32,7 +32,7 @@ export class PasswordPopupComponent {
       this.createNewPassword=true;
     }
   }
-  password = new FormControl();
+  password = new FormControl('',Validators.required);
   confirmPassword= new FormControl('', [Validators.required, Validators.pattern(this.password.value)]);
   
   getErrorMessage() {
