@@ -33,10 +33,14 @@ export class PasswordPopupComponent {
     }
   }
   password = new FormControl();
-  confirmPassword= new FormControl('', [Validators.required]);
+  confirmPassword= new FormControl('', [Validators.required, Validators.pattern(this.password.value)]);
+  
   getErrorMessage() {
-    if (this.password.hasError('pattern')||this.confirmPassword.hasError('pattern')) {
-      return 'You must enter a value';
+    if (this.password.hasError('pattern')) {
+      return 'Password must contain at least eight characters, at least one number and both lower and uppercase letters and special characters';
+    }
+    else if(this.confirmPassword.hasError('pattern')){
+      return 'Please confirm the password';
     }
     return this.password.hasError('password') ? 'Not a valid password' : '';
   }

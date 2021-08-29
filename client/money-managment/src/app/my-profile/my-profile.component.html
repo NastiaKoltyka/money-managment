@@ -4,16 +4,28 @@
     <div class="card-content">
       <div class="avatar"></div>
       <div class="user-info">
-        <p><b>Name:</b> {{user.name}}</p>
-        <p><b>Surname:</b> {{user.surname}}</p>
-        <p><b>Email:</b> {{user.email}}</p>
+        <div>
+          <b>Name:</b>
+          <p (click)="openChangeDialog('name')" class="edit" [hidden]="changeName">{{ user.name}}</p>
+          <input type="text" *ngIf="changeName">
+        </div>
+        <div>
+          <b>Surname:</b>
+          <p (click)="openChangeDialog('surname')" class="edit" [hidden]="changeSurName">{{ user.surname}}</p>
+          <input type="text" *ngIf="changeSurName">
+        </div>
+        <div>
+          <b>Email:</b>
+          <p (click)="openChangeDialog('email')" class="edit" [hidden]="changeEmail">{{ user.email}}</p>
+          <input type="email" *ngIf="changeEmail">
+        </div>
         <p><b>Password:</b> ********</p>
         <p><b>Balance:</b> {{user.balance}} {{user.currency}}</p>
       </div>
     </div>
     <div class="buttons">
       <button mat-button (click)="openDialog()" class="change-password">Change password</button>
-      <button mat-button (click)="backClicked()" >Back</button>
+      <button mat-button (click)="backClicked()">Back</button>
     </div>
   </div>
 </div>
