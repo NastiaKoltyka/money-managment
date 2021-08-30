@@ -10,7 +10,7 @@ import { AuthService } from './auth.sevice';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'user-system';
+  title = 'money-managment';
   date: number;
   visible: boolean;
   sideBarOpened: boolean;

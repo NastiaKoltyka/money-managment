@@ -1,4 +1,8 @@
+import { HttpClientModule } from '@angular/common/http';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MaterialModule } from '../shared/material/material.module';
 
 import { PicturePikerComponent } from './picture-piker.component';
 
@@ -8,7 +12,9 @@ describe('PicturePikerComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ PicturePikerComponent ]
+      declarations: [ PicturePikerComponent ],
+      imports: [HttpClientModule, MaterialModule, BrowserAnimationsModule],
+      providers: [{ provide: MatDialogRef, useValue: {} }, { provide: MAT_DIALOG_DATA, useValue: {} }]
     })
     .compileComponents();
   });
