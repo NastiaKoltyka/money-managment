@@ -93,7 +93,7 @@ export class DashboardComponent implements OnInit {
   applyTransaction(result: number) {
     if (this.selectedIncome && this.selectedSaving != -1) {
       this.httpService.transferFromIncomeToSaving(this.userId, this.savings[this.selectedSaving].id, result).subscribe(() => {
-        this.refreshUser()
+        this.authService.refreshUser();
         this.selectedSpend = -1;
         this.selectedSaving = -1;
         this.selectedIncome = false;
@@ -101,7 +101,7 @@ export class DashboardComponent implements OnInit {
     }
     else if(this.selectedSaving!=-1,this.selectedSpend!=-1){
       this.httpService.transferFromSavingToExpenses(this.savings[this.selectedSaving].id, this.expenses[this.selectedSpend].id, result).subscribe(() => {
-        this.refreshUser()
+        this.authService.refreshUser();
         this.selectedSpend = -1;
         this.selectedSaving = -1;
         this.selectedIncome = false;
@@ -116,7 +116,7 @@ export class DashboardComponent implements OnInit {
     this.selectedSaving = -1;
     this.selectedIncome = false;
   }
-  refreshUser(){
-    this.authService.refreshUser();
-  }
+  // refreshUser(){
+  //   this.authService.refreshUser();
+  // }
 }

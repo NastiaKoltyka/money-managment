@@ -125,9 +125,9 @@
   cursor: pointer;
 }
 .container {
-  min-height: 750px;
+  min-height: 680px;
   width: 100%;
-  max-width: 1600px;
+  max-width: 1500px;
   margin: 45px auto;
   box-shadow: 0px 0px 18px 7px rgba(34, 60, 80, 0.2);
   padding: 50px;
