@@ -57,7 +57,16 @@ const getSavingById = (id) => {
                         balance: row.balance,
                         userId: row.user_id
                     }
-                });
+                }).catch(err => {
+                    if (typeof err.code == 'number') {
+                        return Promise.reject(err);
+                    } else {
+                        return Promise.reject({
+                            code: 500,
+                            description: `Error getting saving category by id from the database. ${err.message}`
+                        });
+                    }
+                });;
         })
         .catch(err => {
             if (typeof err.code == 'number') {
@@ -65,7 +74,7 @@ const getSavingById = (id) => {
             } else {
                 return Promise.reject({
                     code: 500,
-                    description: `Error getting saving category by id from the database. ${err.message}`
+                    description: `Error getting connection to get saving category by id from the database. ${err.message}`
                 });
             }
         });

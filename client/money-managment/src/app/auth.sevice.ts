@@ -12,8 +12,10 @@ export class AuthService {
     private host: string = 'http://127.0.0.1:3000/api/auth';
     token: string;
     user: User;
+    options: {headers?: { [header: string]: string | string[] } | undefined};
     constructor(private http: HttpClient) {
         this.token = localStorage.getItem('token') ?? '';
+        this.options = this.getOptions();
         this.user = this.token.length == 0 ? new User('', '', '') : this.helper.decodeToken<User>(this.token);
     }
 
@@ -22,21 +24,25 @@ export class AuthService {
             .toPromise()
             .then((data: any) => {
                 this.token = data.token;
+                this.options = this.getOptions();
                 localStorage.setItem('token', this.token);
                 this.user = this.helper.decodeToken<User>(this.token);
             });
     }
 
+    getOptions(): {headers?: { [header: string]: string | string[] } | undefined}{
+        return { headers: { 'Authorization': `Bearer ${this.token}` } };
+    }
+
     refreshUser(){
-        if(this.user.id > 0){
-            this.http.get<User>(`${this.host}/users/${this.user.id}`, { headers: { 'Authorization': `Bearer ${this.token}` } }).subscribe((data:User) => {
-                this.user = data;
-            });
-        }
+        this.http.get<User>(`${this.host}/users/${this.user.id}`, this.options).subscribe((data:User) => {
+            this.user = data;
+        });
     }
 
     logOut(){
         this.token = '';
+        this.options = {};
         localStorage.setItem('token', this.token);
         this.user = new User('','','');
     }

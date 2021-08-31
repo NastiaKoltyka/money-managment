@@ -57,6 +57,15 @@ const getExpenseById = (id) => {
                         balance: row.balance,
                         userId: row.user_id
                     }
+                }).catch(err => {
+                    if (typeof err.code == 'number') {
+                        return Promise.reject(err);
+                    } else {
+                        return Promise.reject({
+                            code: 500,
+                            description: `Error getting expense category by id from the database. ${err.message}`
+                        });
+                    }
                 });
         })
         .catch(err => {
@@ -65,7 +74,7 @@ const getExpenseById = (id) => {
             } else {
                 return Promise.reject({
                     code: 500,
-                    description: `Error getting expense category by id from the database. ${err.message}`
+                    description: `Error getting connection to get expense category by id from the database. ${err.message}`
                 });
             }
         });

@@ -15,21 +15,17 @@ export class HttpService {
   constructor(private http: HttpClient, private authService: AuthService) { }
 
   getUser(userId: number): Observable<User> {
-    return this.http.get<User>(`${this.host}/users/${userId}`, this.getAuthHeader());
+    return this.http.get<User>(`${this.host}/users/${userId}`, this.authService.getOptions());
   }
 
   transferFromSavingToExpenses(savingId: number,expenseId:number, amount:number ): Observable<void> {
     let body = {savingId, expenseId, amount};
-    return this.http.post<void>(`${this.host}/transactions/saving-to-expense`, body, this.getAuthHeader());
+    return this.http.post<void>(`${this.host}/transactions/saving-to-expense`, body, this.authService.getOptions());
   }
   
   transferFromIncomeToSaving(userId: number,savingId:number, amount:number ): Observable<void> {
     let body = {userId, savingId, amount};
-    return this.http.post<void>(`${this.host}/transactions/income-to-saving`, body, this.getAuthHeader());
-  }
-
-  private getAuthHeader() {
-    return { headers: { 'Authorization': `Bearer ${this.authService.token}` } } 
+    return this.http.post<void>(`${this.host}/transactions/income-to-saving`, body, this.authService.getOptions());
   }
 }
 
