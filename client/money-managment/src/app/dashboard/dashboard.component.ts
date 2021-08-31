@@ -109,12 +109,14 @@ export class DashboardComponent implements OnInit {
     this.selectedIncome = false;
   }
   refreshUser(){
-    this.authService.refreshUser();
-    this.httpService.getUser(this.userId).subscribe((data:User) => {
-      this.userIncome=data.income;
-      this.savings = data.savings;
-      this.expenses = data.expenses;
-      this.authService.user = data;
-    })
+    if (this.userId > 0) {
+      this.authService.refreshUser();
+      this.httpService.getUser(this.userId).subscribe((data:User) => {
+        this.userIncome=data.income;
+        this.savings = data.savings;
+        this.expenses = data.expenses;
+        this.authService.user = data;
+      })
+    }
   }
 }
