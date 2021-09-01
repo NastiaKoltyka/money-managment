@@ -34,7 +34,7 @@ export class AuthService {
 
     refreshUser(){
         if(this.user.id > 0){
-            this.http.get<User>(`${this.host}/users/${this.user.id}`, { headers: { 'Authorization': `Bearer ${this.token}` } }).subscribe(this.userRefresh);
+            this.http.get<User>(`${this.host}/users/${this.user.id}`, { headers: { 'Authorization': `Bearer ${this.token}` } }).subscribe(data=>this.userRefresh.next(data));
         }
     }
 
