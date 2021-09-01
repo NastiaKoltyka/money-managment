@@ -13,7 +13,7 @@ export class PicturePikerComponent implements OnInit {
   icons: string[];
   baseUrl: string = 'http://localhost:3000/api/images/';
   choosedPicture:string;
-  constructor(private authService: AuthService, public dialogRef: MatDialogRef<PicturePikerComponent>,
+  constructor(public dialogRef: MatDialogRef<PicturePikerComponent>,
     @Inject(MAT_DIALOG_DATA) public data: string) {
       this.choosedPicture=''
     this.icons = [`2754575_man_avatar_male_icon.svg`,

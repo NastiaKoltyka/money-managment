@@ -12,11 +12,11 @@ describe('PicturePikerComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ PicturePikerComponent ],
+      declarations: [PicturePikerComponent],
       imports: [HttpClientModule, MaterialModule, BrowserAnimationsModule],
-      providers: [{ provide: MatDialogRef, useValue: {} }, { provide: MAT_DIALOG_DATA, useValue: {} }]
+      providers: [{ provide: MatDialogRef, useValue: {close: () => { }} }, { provide: MAT_DIALOG_DATA, useValue: {} }]
     })
-    .compileComponents();
+      .compileComponents();
   });
 
   beforeEach(() => {
@@ -28,4 +28,32 @@ describe('PicturePikerComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('should close window', () => {
+    fixture = TestBed.createComponent(PicturePikerComponent);
+    const app = fixture.componentInstance;
+    spyOn(app.dialogRef, "close");
+    app.onNoClick();
+    expect(app.dialogRef.close).toHaveBeenCalled();
+  });
+
+  it('should save changes', () => {
+    fixture = TestBed.createComponent(PicturePikerComponent);
+    const app = fixture.componentInstance;
+    const picture='fakePicture'
+    app.choosedPicture = picture
+    spyOn(app.dialogRef, "close");
+    app.saveChange();
+    expect(app.dialogRef.close).toHaveBeenCalledWith(picture);
+  });
+
+
+  it('should choose picture ', () => {
+    fixture = TestBed.createComponent(PicturePikerComponent);
+    const app = fixture.componentInstance;
+    const picture='fakePicture';
+    app.choosePicture(picture)
+    expect(app.choosedPicture).toEqual(picture);
+  });
+
 });
