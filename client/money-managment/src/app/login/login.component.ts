@@ -14,7 +14,7 @@ import { NotificationsService } from '../notifications.service';
 })
 export class LoginComponent implements OnInit {
   loginUser: Credentials;
-  constructor(private authService: AuthService, private notificationsService: NotificationsService, private router: Router) {
+  constructor(public authService: AuthService, private notificationsService: NotificationsService, private router: Router) {
     this.loginUser = new Credentials('', '')
   }
 
