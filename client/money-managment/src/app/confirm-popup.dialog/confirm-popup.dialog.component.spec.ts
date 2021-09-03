@@ -15,7 +15,7 @@ describe('ConfirmPopup.DialogComponent', () => {
     await TestBed.configureTestingModule({
       declarations: [ConfirmPopupDialogComponent],
       imports: [HttpClientModule, MaterialModule, BrowserAnimationsModule, FormsModule],
-      providers: [{ provide: MatDialogRef, useValue: {} }, { provide: MAT_DIALOG_DATA, useValue: {} }]
+      providers: [{ provide: MatDialogRef, useValue:  { close: () => { } } }, { provide: MAT_DIALOG_DATA, useValue: {} }]
     })
       .compileComponents();
   });
@@ -29,4 +29,12 @@ describe('ConfirmPopup.DialogComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+  it('should close window', () => {
+    fixture = TestBed.createComponent(ConfirmPopupDialogComponent);
+    const app = fixture.componentInstance;
+    spyOn(app.dialogRef, "close");
+    app.onNoClick();
+    expect(app.dialogRef.close).toHaveBeenCalled();
+  });
+
 });
