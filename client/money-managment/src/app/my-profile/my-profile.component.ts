@@ -18,7 +18,7 @@ import { NotificationsService } from '../notifications.service';
   templateUrl: './my-profile.component.html',
   styleUrls: ['./my-profile.component.css']
 })
-export class MyProfileComponent implements OnInit {
+export class MyProfileComponent {
   user: User;
   changeName: boolean;
   changeSurname: boolean;
@@ -50,9 +50,6 @@ export class MyProfileComponent implements OnInit {
   userName = new FormControl();
   userSurname = new FormControl();
   userEmail = new FormControl();
-
-  ngOnInit(): void {
-  }
 
   backClicked() {
     this.location.back();

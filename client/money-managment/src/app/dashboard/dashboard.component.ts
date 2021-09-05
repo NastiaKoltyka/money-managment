@@ -21,9 +21,8 @@ export class DashboardComponent implements OnInit {
   selectedSaving: number;
   selectedIncome: boolean;
   calculatorVisible: boolean;
-  result: number;
 
-  constructor(public activatedRout: ActivatedRoute, private httpService: HttpService, private authService: AuthService) {
+  constructor(public activatedRout: ActivatedRoute, public httpService: HttpService, public authService: AuthService) {
     this.userId = 0;
     this.userIncome=0
     this.userCurrency='';
@@ -33,7 +32,6 @@ export class DashboardComponent implements OnInit {
     this.selectedSaving = -1;
     this.selectedSpend = -1;
     this.calculatorVisible = false;
-    this.result = 0;
 
     this.authService.userRefresh.subscribe((data:User) => {
       this.userIncome=data.income;
@@ -107,8 +105,6 @@ export class DashboardComponent implements OnInit {
         this.selectedIncome = false;
       });
     }
-    
-    this.result = result;
   }
   closeCalculator() {
     this.calculatorVisible = false;
