@@ -6,7 +6,6 @@ const transferFromIncomeToSaving = (req, res) => {
             return res.status(200).json();
         })
         .catch(error => {
-            console.log(error);
             return res.status(error.code).json({
             code: error.code,
             description: error.description
@@ -25,7 +24,20 @@ const transferFromSavingToExpense = (req, res) => {
     })});
 };
 
+const getUserHistory = (req, res) => {
+    return transactionService.getUserHistory(req.params.userId)
+    .then(r => {
+        return res.status(200).json(r);
+    })
+    .catch(error => {
+        return res.status(error.code).json({
+        code: error.code,
+        description: error.description
+    })});
+};
+
 module.exports = {
     transferFromIncomeToSaving,
-    transferFromSavingToExpense
+    transferFromSavingToExpense,
+    getUserHistory
 };

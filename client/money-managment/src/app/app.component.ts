@@ -14,13 +14,28 @@ export class AppComponent {
   title = 'user-system';
   date:Date;
   user: User;
+  visible: boolean;
+  sideBarOpened:boolean;
   constructor(public router: Router, public authService: AuthService ) { 
     this.date=new Date();
     this.user = authService.user;
+    this.visible = false;
+    this.sideBarOpened = false;
   }
 
-  logout(){
+  logout() {
     this.authService.logOut();
     this.router.navigate(['/login']);
+    this.sideBarOpened = false;
+    this.visible = false;
+
+  }
+  openSidebar() {
+    this.visible = true;
+    setTimeout(() => {this.sideBarOpened = true;}, 100);
+  }
+  closeSidebar() {
+    this.sideBarOpened = false;
+    setTimeout(() => {this.visible = false;}, 500);
   }
 }

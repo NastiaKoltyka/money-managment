@@ -1,4 +1,5 @@
 import { NgModule } from '@angular/core';
+import { ToastrModule } from 'ngx-toastr';
 
 import { UserCurrencyPipe } from './user-currency.pipe';
 
@@ -7,6 +8,7 @@ import { UserCurrencyPipe } from './user-currency.pipe';
     UserCurrencyPipe,
   ],
   imports: [
+    ToastrModule.forRoot(),
   ],
   exports: [
     UserCurrencyPipe

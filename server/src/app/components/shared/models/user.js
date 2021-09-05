@@ -41,12 +41,22 @@ const getConnection = () => {
             user_id int not null,
             FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE);`
 
+    const historyTable= `
+    create table if not exists history(
+        id int primary key auto_increment,
+        date datetime,
+        user_id int,
+        expense_id int,
+        saving_id int,
+        amount int,
+        FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE);`
 
     const insertUser = `INSERT INTO users (name,surname, email, password, currency, income, balance)  VALUES ?`;
 
     const insertExpenseTable = `INSERT INTO expenses (user_id, category, picture, balance) VALUES ?`
     const insertSavingTable = `INSERT INTO savings (user_id, category, picture, balance) VALUES ?`
-    return Promise.all([connection.query(createUsersTable), connection.query(expenseTable), connection.query(savingTable)])
+
+    return Promise.all([connection.query(createUsersTable), connection.query(expenseTable), connection.query(savingTable),connection.query(historyTable) ])
         .then(result => {
             return connection.query('SELECT COUNT(*) as Count FROM users')
                 .then(usersCountResult => {

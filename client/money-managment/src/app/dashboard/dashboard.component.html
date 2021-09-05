@@ -1,4 +1,4 @@
-<div class="container">
+<div>
     <div class="block">
         <div class="income" [ngClass]="{selected: selectedIncome}">
             <p>INCOME</p>
@@ -19,7 +19,7 @@
             </div>
         </div>
     </div>
-    <div class="block" [ngClass]="{highlighted: selectedSaving!=-1 }">
+    <div class="block" [ngClass]="{highlighted: selectedSaving!=-1 && !selectedIncome }">
         <div class="block-title">Spends</div>
         <div class="categories">
             <div class="category" *ngFor="let expens of expenses; let i = index" [ngClass]="{selected: i == selectedSpend}">
