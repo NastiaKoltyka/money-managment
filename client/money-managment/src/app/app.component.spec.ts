@@ -48,9 +48,11 @@ describe('AppComponent', () => {
     app.authService.loginUser(new Credentials('test@gmail.com', 'test'));
     app.sideBarOpened = true;
     app.visible = true;
+    spyOn(app.router, 'navigate');
     app.logout();
     let loggedOutProperly:boolean = !app.authService.isLoggedIn() && !app.visible && !app.sideBarOpened;
     expect(loggedOutProperly).toBeTruthy();
+    expect(app.router.navigate).toHaveBeenCalledWith(['/login']);
   });
 
   it(`should close side bar`, fakeAsync(() => {
