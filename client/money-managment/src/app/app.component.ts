@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 
 import { AuthService } from './auth.sevice';
+import { User } from './classes/user';
 
 
 @Component({
@@ -11,13 +12,18 @@ import { AuthService } from './auth.sevice';
 })
 export class AppComponent {
   title = 'user-system';
-  date: number;
+  date:Date;
+  user: User;
   visible: boolean;
-  sideBarOpened: boolean;
-  constructor(public router: Router, public authService: AuthService) {
-    this.date = Date.now();
+  sideBarOpened:boolean;
+  constructor(public router: Router, public authService: AuthService ) { 
+    this.date=new Date();
+    this.user = authService.user;
     this.visible = false;
     this.sideBarOpened = false;
+    authService.userRefresh.subscribe(user => {
+      this.user = user;
+    });
   }
 
   logout() {

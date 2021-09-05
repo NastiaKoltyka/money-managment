@@ -13,8 +13,8 @@ import { HttpService } from '../http.sevice';
 })
 export class DashboardComponent implements OnInit {
   userId: number;
-  userCurrency:string;
-  userIncome:number;
+  userCurrency: string;
+  userIncome: number;
   savings: Category[];
   expenses: Category[];
   selectedSpend: number;
@@ -25,8 +25,8 @@ export class DashboardComponent implements OnInit {
 
   constructor(public activatedRout: ActivatedRoute, private httpService: HttpService, private authService: AuthService) {
     this.userId = 0;
-    this.userIncome=0
-    this.userCurrency='';
+    this.userIncome = 0
+    this.userCurrency = '';
     this.savings = [];
     this.expenses = [];
     this.selectedIncome = false;
@@ -35,8 +35,8 @@ export class DashboardComponent implements OnInit {
     this.calculatorVisible = false;
     this.result = 0;
 
-    this.authService.userRefresh.subscribe((data:User) => {
-      this.userIncome=data.income;
+    this.authService.userRefresh.subscribe((data: User) => {
+      this.userIncome = data.income;
       this.savings = data.savings;
       this.expenses = data.expenses;
     });
@@ -44,27 +44,27 @@ export class DashboardComponent implements OnInit {
 
   ngOnInit(): void {
     this.activatedRout.data.subscribe(data => {
-      this.userIncome=data.user.income;
+      this.userIncome = data.user.income;
       this.userId = data.user.id;
-      this.userCurrency=data.user.currency;
+      this.userCurrency = data.user.currency;
       this.savings = data.user.savings;
       this.expenses = data.user.expenses;
     })
   }
 
   selectSpend(index: number) {
-    if (this.selectedSaving != -1 ) {
+    if (this.selectedSaving != -1) {
       this.calculatorVisible = true;
       this.selectedSpend = index;
-      
+
     }
-    
+
     else {
       alert('First choose saving');
       this.selectedSpend = -1;
       this.selectedSaving = -1;
       this.selectedIncome = false;
-      
+
     }
   }
 
@@ -99,7 +99,7 @@ export class DashboardComponent implements OnInit {
         this.selectedIncome = false;
       });
     }
-    else if(this.selectedSaving!=-1,this.selectedSpend!=-1){
+    else if (this.selectedSaving != -1, this.selectedSpend != -1) {
       this.httpService.transferFromSavingToExpenses(this.savings[this.selectedSaving].id, this.expenses[this.selectedSpend].id, result).subscribe(() => {
         this.refreshUser()
         this.selectedSpend = -1;
@@ -107,7 +107,7 @@ export class DashboardComponent implements OnInit {
         this.selectedIncome = false;
       });
     }
-    
+
     this.result = result;
   }
   closeCalculator() {
@@ -116,7 +116,9 @@ export class DashboardComponent implements OnInit {
     this.selectedSaving = -1;
     this.selectedIncome = false;
   }
-  refreshUser(){
-    this.authService.refreshUser();
+  refreshUser() {
+    if (this.userId > 0) {
+      this.authService.refreshUser();
+    }
   }
 }
