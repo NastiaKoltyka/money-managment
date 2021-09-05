@@ -120,9 +120,10 @@ describe('DashboardComponent', () => {
     expect(!app.selectedIncome && app.selectedSaving == -1 && app.selectedSpend == -1 && !app.calculatorVisible).toBeTrue();
   });
 
-  it('should apply transaction from saving to expense', () => {
+  it('should refresh user', () => {
     fixture = TestBed.createComponent(DashboardComponent);
     const app = fixture.componentInstance;
+    app.userId = 1;
     spyOn(app.authService, 'refreshUser');
     app.refreshUser();
     expect(app.authService.refreshUser).toHaveBeenCalled();
