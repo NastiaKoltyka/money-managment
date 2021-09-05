@@ -21,6 +21,9 @@ export class AppComponent {
     this.user = authService.user;
     this.visible = false;
     this.sideBarOpened = false;
+    authService.userRefresh.subscribe(user => {
+      this.user = user;
+    });
   }
 
   logout() {
