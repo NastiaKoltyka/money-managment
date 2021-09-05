@@ -18,4 +18,23 @@ describe('NotificationsService', () => {
   it('should be created', () => {
     expect(service).toBeTruthy();
   });
+
+  it('should get error', () => {
+    spyOn(service.toastr, 'error');
+    service.error('message');
+    expect(service.toastr.error).toHaveBeenCalledWith('message', 'Error!');
+  });
+
+  it('should get warning', () => {
+    spyOn(service.toastr, 'warning');
+    service.warning('message');
+    expect(service.toastr.warning).toHaveBeenCalledWith('message', 'Warning!');
+  });
+
+  it('should get info', () => {
+    spyOn(service.toastr, 'info');
+    service.info('message');
+    expect(service.toastr.info).toHaveBeenCalledWith('message', 'Info!');
+  });
+
 });
