@@ -136,7 +136,7 @@ export class MyProfileComponent {
     this.changeSurname = false;
     this.changeEmail = false;
     this.changePicture = false;
-    this.changePassword=false;
+    this.changePassword = false;
     this.user = this.authService.user;
     this.updateUser = this.user;
     this.userName.reset();

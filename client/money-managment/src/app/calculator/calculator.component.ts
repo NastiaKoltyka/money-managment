@@ -56,6 +56,4 @@ export class CalculatorComponent {
   onBlur() {
     this.focused = false;
   }
- 
-
 }

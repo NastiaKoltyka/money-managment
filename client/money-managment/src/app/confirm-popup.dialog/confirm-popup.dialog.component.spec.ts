@@ -16,7 +16,7 @@ describe('ConfirmPopup.DialogComponent', () => {
     await TestBed.configureTestingModule({
       declarations: [ConfirmPopupDialogComponent],
       imports: [HttpClientModule, MaterialModule, BrowserAnimationsModule, FormsModule],
-      providers: [{ provide: MatDialogRef, useValue:  { close: () => { } } }, { provide: MAT_DIALOG_DATA, useValue: {} }]
+      providers: [{ provide: MatDialogRef, useValue: { close: () => { } } }, { provide: MAT_DIALOG_DATA, useValue: {} }]
     })
       .compileComponents();
   });
@@ -40,21 +40,21 @@ describe('ConfirmPopup.DialogComponent', () => {
   it('should check incorrect password', () => {
     fixture = TestBed.createComponent(ConfirmPopupDialogComponent);
     const app = fixture.componentInstance;
-    app.newPassword='12345';
-    app.user = new User('user','user','user');
+    app.newPassword = '12345';
+    app.user = new User('user', 'user', 'user');
     spyOn(app.dialogRef, "close");
     app.checkPassword();
     expect(app.dialogRef.close).toHaveBeenCalledWith(false);
-    });
-    it('should check correct password', () => {
-      fixture = TestBed.createComponent(ConfirmPopupDialogComponent);
-      const app = fixture.componentInstance;
-      app.newPassword='12345';
-      app.user = new User('user','user','12345');
-      spyOn(app.dialogRef, "close");
-      app.checkPassword();
-      expect(app.dialogRef.close).toHaveBeenCalledWith(true);
-      });
-  
+  });
+  it('should check correct password', () => {
+    fixture = TestBed.createComponent(ConfirmPopupDialogComponent);
+    const app = fixture.componentInstance;
+    app.newPassword = '12345';
+    app.user = new User('user', 'user', '12345');
+    spyOn(app.dialogRef, "close");
+    app.checkPassword();
+    expect(app.dialogRef.close).toHaveBeenCalledWith(true);
+  });
+
 
 });

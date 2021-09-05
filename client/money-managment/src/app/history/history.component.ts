@@ -12,7 +12,6 @@ import { HttpService } from '../http.sevice';
 })
 export class HistoryComponent implements OnInit {
   constructor(private httpService: HttpService, private authService: AuthService) {
-   
   }
 
   ngOnInit(): void {
@@ -20,5 +19,4 @@ export class HistoryComponent implements OnInit {
       console.log(data)
     })
   }
-
 }

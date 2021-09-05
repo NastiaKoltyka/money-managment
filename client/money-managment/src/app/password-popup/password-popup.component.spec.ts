@@ -18,7 +18,7 @@ describe('PasswordPopupComponent', () => {
     await TestBed.configureTestingModule({
       declarations: [PasswordPopupComponent],
       imports: [HttpClientModule, MaterialModule, BrowserAnimationsModule, FormsModule],
-      providers: [{ provide: MatDialogRef, useValue: { close: () => { } } }, { provide: MAT_DIALOG_DATA, useValue: {} },{ provide: AuthService, useClass: AuthServiceMock }]
+      providers: [{ provide: MatDialogRef, useValue: { close: () => { } } }, { provide: MAT_DIALOG_DATA, useValue: {} }, { provide: AuthService, useClass: AuthServiceMock }]
     })
       .compileComponents();
   });
@@ -41,12 +41,12 @@ describe('PasswordPopupComponent', () => {
     expect(app.dialogRef.close).toHaveBeenCalled();
   });
 
-  
+
   it('should check correct password', () => {
     fixture = TestBed.createComponent(PasswordPopupComponent);
     const app = fixture.componentInstance;
     app.newPassword = '12345';
-    app.user = new User('user','user','12345');
+    app.user = new User('user', 'user', '12345');
     app.checkPassword();
     expect(app.createNewPassword).toBeTrue();
   });
@@ -55,9 +55,8 @@ describe('PasswordPopupComponent', () => {
     fixture = TestBed.createComponent(PasswordPopupComponent);
     const app = fixture.componentInstance;
     app.newPassword = '12345';
-    app.user = new User('user','user','user');
+    app.user = new User('user', 'user', 'user');
     app.checkPassword();
     expect(app.createNewPassword).toBeFalse();
   });
-
 });

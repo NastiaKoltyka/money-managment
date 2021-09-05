@@ -14,7 +14,7 @@ describe('PicturePikerComponent', () => {
     await TestBed.configureTestingModule({
       declarations: [PicturePikerComponent],
       imports: [HttpClientModule, MaterialModule, BrowserAnimationsModule],
-      providers: [{ provide: MatDialogRef, useValue: {close: () => { }} }, { provide: MAT_DIALOG_DATA, useValue: {} }]
+      providers: [{ provide: MatDialogRef, useValue: { close: () => { } } }, { provide: MAT_DIALOG_DATA, useValue: {} }]
     })
       .compileComponents();
   });
@@ -40,7 +40,7 @@ describe('PicturePikerComponent', () => {
   it('should save changes', () => {
     fixture = TestBed.createComponent(PicturePikerComponent);
     const app = fixture.componentInstance;
-    const picture='fakePicture'
+    const picture = 'fakePicture'
     app.choosedPicture = picture
     spyOn(app.dialogRef, "close");
     app.saveChange();
@@ -51,7 +51,7 @@ describe('PicturePikerComponent', () => {
   it('should choose picture ', () => {
     fixture = TestBed.createComponent(PicturePikerComponent);
     const app = fixture.componentInstance;
-    const picture='fakePicture';
+    const picture = 'fakePicture';
     app.choosePicture(picture)
     expect(app.choosedPicture).toEqual(picture);
   });

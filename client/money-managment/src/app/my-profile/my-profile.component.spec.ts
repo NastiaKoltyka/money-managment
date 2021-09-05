@@ -90,6 +90,7 @@ describe('MyProfileComponent', () => {
     app.openChangeDialog(fieldName);
     expect(app.changeName).toBeFalse();
   });
+  
   it('should open change picture popup', () => {
     TestBed.overrideProvider(MatDialog, { useValue: new PictureDialogMock() });
     fixture = TestBed.createComponent(MyProfileComponent);
@@ -97,6 +98,7 @@ describe('MyProfileComponent', () => {
     app.openPictureDialog();
     expect(app.userPicture == 'newPicture' && app.changePicture == true).toBeTrue();
   });
+  
   it('shouldn\'t change picture', () => {
     TestBed.overrideProvider(MatDialog, { useValue: new PictureDialogFalseMock() });
     fixture = TestBed.createComponent(MyProfileComponent);
@@ -104,6 +106,7 @@ describe('MyProfileComponent', () => {
     app.openPictureDialog();
     expect(app.userPicture != 'newPicture' && app.changePicture == false).toBeTrue();
   });
+  
   it('should save updateUserName', () => {
     fixture = TestBed.createComponent(MyProfileComponent);
     const app = fixture.componentInstance;
@@ -112,6 +115,7 @@ describe('MyProfileComponent', () => {
     app.save();
     expect(app.updateUser.name).toEqual('newName');
   });
+  
   it('should save updateUserSurname', () => {
     fixture = TestBed.createComponent(MyProfileComponent);
     const app = fixture.componentInstance;
@@ -120,6 +124,7 @@ describe('MyProfileComponent', () => {
     app.save();
     expect(app.updateUser.surname).toEqual('newSurname');
   });
+  
   it('should save updateUserEmail', () => {
     fixture = TestBed.createComponent(MyProfileComponent);
     const app = fixture.componentInstance;
@@ -128,6 +133,7 @@ describe('MyProfileComponent', () => {
     app.save();
     expect(app.updateUser.email).toEqual('newEmail');
   });
+  
   it('should save updateUserPicture', () => {
     fixture = TestBed.createComponent(MyProfileComponent);
     const app = fixture.componentInstance;
@@ -135,20 +141,20 @@ describe('MyProfileComponent', () => {
     app.save();
     expect(app.updateUser.picture == app.userPicture).toBeTrue();
   });
+  
   it('should save updateUserPassword', () => {
     fixture = TestBed.createComponent(MyProfileComponent);
     const app = fixture.componentInstance;
     app.save();
     expect(app.updateUser.password == app.updatePassword).toBeTrue();
   });
+
   it('should cancel changes', () => {
     fixture = TestBed.createComponent(MyProfileComponent);
     const app = fixture.componentInstance;
     app.cancel();
     expect(!app.changeName && !app.changeSurname && !app.changeEmail && !app.changePicture && !app.changePassword).toBeTrue();
   });
-
-
 });
 
 export class PasswordDialogMock {

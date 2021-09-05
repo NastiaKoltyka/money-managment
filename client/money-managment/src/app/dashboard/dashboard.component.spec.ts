@@ -15,11 +15,11 @@ describe('DashboardComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ DashboardComponent, UserCurrencyPipe ],
-      imports:[HttpClientModule, RouterTestingModule, MaterialModule],
+      declarations: [DashboardComponent, UserCurrencyPipe],
+      imports: [HttpClientModule, RouterTestingModule, MaterialModule],
       providers: []
     })
-    .compileComponents();
+      .compileComponents();
   });
 
   beforeEach(() => {
@@ -31,62 +31,62 @@ describe('DashboardComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
-  it ('should select spend',() => {
+  it('should select spend', () => {
     fixture = TestBed.createComponent(DashboardComponent);
     const app = fixture.componentInstance;
-    let index=5;
-    app.selectedSaving=1;
+    let index = 5;
+    app.selectedSaving = 1;
     app.selectSpend(index);
-    expect(app.selectedSaving!=-1 && app.calculatorVisible && app.selectedSpend==index).toBeTrue();
+    expect(app.selectedSaving != -1 && app.calculatorVisible && app.selectedSpend == index).toBeTrue();
   });
-  it ('shouldn\'t select spend',() => {
+  it('shouldn\'t select spend', () => {
     fixture = TestBed.createComponent(DashboardComponent);
     const app = fixture.componentInstance;
-    let index=5;
-    app.selectedSaving=-1;
+    let index = 5;
+    app.selectedSaving = -1;
     app.selectSpend(index);
-    expect(app.selectedSaving==-1 && !app.selectedIncome && app.selectedSpend==-1).toBeTrue();
+    expect(app.selectedSaving == -1 && !app.selectedIncome && app.selectedSpend == -1).toBeTrue();
   });
-  it ('should select saving and select income',() => {
+  it('should select saving and select income', () => {
     fixture = TestBed.createComponent(DashboardComponent);
     const app = fixture.componentInstance;
-    let index=5;
-    app.selectedIncome=true;
+    let index = 5;
+    app.selectedIncome = true;
     app.selectSaving(index);
-    expect(app.selectedSaving==index && app.calculatorVisible && app.selectedIncome).toBeTrue();
+    expect(app.selectedSaving == index && app.calculatorVisible && app.selectedIncome).toBeTrue();
   });
-  it ('should select saving and shouldn\'t select income',() => {
+  it('should select saving and shouldn\'t select income', () => {
     fixture = TestBed.createComponent(DashboardComponent);
     const app = fixture.componentInstance;
-    let index=5;
-    app.selectedIncome=false;
+    let index = 5;
+    app.selectedIncome = false;
     app.selectSaving(index);
-    expect(app.selectedSaving==index && !app.selectedIncome && app.selectedSpend==-1).toBeTrue();
+    expect(app.selectedSaving == index && !app.selectedIncome && app.selectedSpend == -1).toBeTrue();
   });
 
-  it ('shouldn\'nt select saving',() => {
+  it('shouldn\'nt select saving', () => {
     fixture = TestBed.createComponent(DashboardComponent);
     const app = fixture.componentInstance;
-    let index=5;
-    app.selectedIncome=false;
-    app.selectedSaving=index;
+    let index = 5;
+    app.selectedIncome = false;
+    app.selectedSaving = index;
     app.selectSaving(index);
-    expect(app.selectedSaving==-1).toBeTrue();
+    expect(app.selectedSaving == -1).toBeTrue();
   });
-  
-  it ('should select income',() => {
+
+  it('should select income', () => {
     fixture = TestBed.createComponent(DashboardComponent);
     const app = fixture.componentInstance;
-    app.selectedIncome=false;
+    app.selectedIncome = false;
     app.selectIncome();
-    expect(app.selectedIncome && app.selectedSaving==-1 && app.selectedSpend==-1).toBeTrue();
+    expect(app.selectedIncome && app.selectedSaving == -1 && app.selectedSpend == -1).toBeTrue();
   });
-  
-  it ('should apply transaction from income to saving',() => {
+
+  it('should apply transaction from income to saving', () => {
     fixture = TestBed.createComponent(DashboardComponent);
     const app = fixture.componentInstance;
-    app.selectedIncome=true;
-    app.selectedSaving=0;
+    app.selectedIncome = true;
+    app.selectedSaving = 0;
     app.userId = 4;
     app.savings = [new Category('saving1', 'saving1.png')];
     spyOn(app.httpService, 'transferFromIncomeToSaving').and.returnValue(new Observable<void>((observer) => { observer.next() }))
@@ -95,11 +95,11 @@ describe('DashboardComponent', () => {
     expect(!app.selectedIncome && app.selectedSaving == -1 && app.selectedSpend == -1).toBeTrue();
   });
 
-  it ('should apply transaction from saving to expense',() => {
+  it('should apply transaction from saving to expense', () => {
     fixture = TestBed.createComponent(DashboardComponent);
     const app = fixture.componentInstance;
-    app.selectedSaving=0;
-    app.selectedSpend=0;
+    app.selectedSaving = 0;
+    app.selectedSpend = 0;
     app.userId = 4;
     app.savings = [new Category('saving1', 'saving1.png')];
     app.expenses = [new Category('expense1', 'expense1.png')];
@@ -109,18 +109,18 @@ describe('DashboardComponent', () => {
     expect(!app.selectedIncome && app.selectedSaving == -1 && app.selectedSpend == -1).toBeTrue();
   });
 
-  it ('should close calculator',() => {
+  it('should close calculator', () => {
     fixture = TestBed.createComponent(DashboardComponent);
     const app = fixture.componentInstance;
-    app.selectedSaving=1;
-    app.selectedSpend=2;
+    app.selectedSaving = 1;
+    app.selectedSpend = 2;
     app.selectedIncome = true;
     app.calculatorVisible = true;
     app.closeCalculator();
     expect(!app.selectedIncome && app.selectedSaving == -1 && app.selectedSpend == -1 && !app.calculatorVisible).toBeTrue();
   });
 
-  it ('should apply transaction from saving to expense',() => {
+  it('should apply transaction from saving to expense', () => {
     fixture = TestBed.createComponent(DashboardComponent);
     const app = fixture.componentInstance;
     spyOn(app.authService, 'refreshUser');
