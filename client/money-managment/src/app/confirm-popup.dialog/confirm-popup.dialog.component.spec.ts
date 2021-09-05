@@ -8,7 +8,7 @@ import { MaterialModule } from '../shared/material/material.module';
 
 import { ConfirmPopupDialogComponent } from './confirm-popup.dialog.component';
 
-describe('ConfirmPopup.DialogComponent', () => {
+describe('ConfirmPopupDialogComponent', () => {
   let component: ConfirmPopupDialogComponent;
   let fixture: ComponentFixture<ConfirmPopupDialogComponent>;
 

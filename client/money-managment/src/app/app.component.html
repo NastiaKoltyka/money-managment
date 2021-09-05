@@ -5,15 +5,15 @@
   <div class="wrapper">
     <div class="user-wrapper">
       <div class="photo"></div>
-      <div>USER: {{authService.user.name}} {{authService.user.surname}}</div>
+      <div>USER: {{user.name}} {{user.surname}}</div>
     </div>
     <div class="balance-wrapper">
       <div class="balance"></div>
-      <div>BALANCE:{{authService.user.balance | usercurrency:authService.user.currency}}</div>
+      <div>BALANCE:{{user.balance | usercurrency:user.currency}}</div>
     </div>
     <div class="expenses-wrapper">
       <div class="expenses"></div>
-      <div>EXPENSES: {{authService.user.totalExpense | usercurrency:authService.user.currency}}</div>
+      <div>EXPENSES: {{user.totalExpense | usercurrency:user.currency}}</div>
     </div>
     <div class="date-wrapper">
       <div class="date"></div>
