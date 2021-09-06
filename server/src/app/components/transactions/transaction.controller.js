@@ -25,7 +25,7 @@ const transferFromSavingToExpense = (req, res) => {
 };
 
 const getUserHistory = (req, res) => {
-    return transactionService.getUserHistory(req.params.userId)
+    return transactionService.getUserHistory(req.params.userId, req.params.month, req.params.year)
     .then(r => {
         return res.status(200).json(r);
     })

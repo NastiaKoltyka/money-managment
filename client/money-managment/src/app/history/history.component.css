@@ -1,11 +1,11 @@
-h1 {
-  text-align: center;
+.history-title {
   font-size: 40px;
   font-weight: 500;
-  user-select: none;
+  width: 100%;
+  text-align: center;
 }
 
-span {
+.chose-year span {
   font-size: 30px;
   font-weight: 600;
   color: grey;
@@ -42,8 +42,10 @@ table {
 th.mat-header-cell,
 td.mat-cell,
 td.mat-footer-cell {
-  text-align: center!important;
+  text-align: center !important;
 }
-th.mat-header-cell{
-    font-size: 25px;
+
+th.mat-header-cell {
+  font-size: 25px;
 }
+
