@@ -12,11 +12,12 @@ const getConnection = () => {
 
     return Promise.resolve(connection);
 }
-const getHistoryByUserId = (userId) => {
+const getHistoryByUserId = (userId, month, year) => {
     return getConnection()
         .then(connection => {
-            return connection.query("SELECT date, user_id, expense_id, saving_id, amount FROM history WHERE user_id=?", userId)
+            return connection.query("SELECT date, user_id, expense_id, saving_id, amount FROM history WHERE user_id=? AND YEAR (date)=? AND MONTH (date)=?", [userId, year, month])
                 .then(result => {
+                    console.log(result)
                     connection.close();
                     return result[0].map(row => {
                         return {
@@ -26,6 +27,7 @@ const getHistoryByUserId = (userId) => {
                             amount: row.amount,
                         }
                     });
+                    
                 });
         })
         .catch(err => {
