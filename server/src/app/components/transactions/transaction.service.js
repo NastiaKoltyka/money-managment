@@ -51,8 +51,8 @@ const transferFromSavingToExpense = (savingId, expenseId, amount) => {
     });
 };
 
-const getUserHistory = (userId) => {
-    return History.getHistoryByUserId(userId);
+const getUserHistory = (userId, month, year) => {
+    return History.getHistory(userId, month, year);
 };
 
 module.exports = {

@@ -8,6 +8,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SharedModule } from './shared.module';
+import { MaterialModule } from './shared/material/material.module';
+
 
 
 @NgModule({
@@ -19,10 +21,11 @@ import { SharedModule } from './shared.module';
     CoreModule,
     HttpClientModule,
     BrowserAnimationsModule,
-    
     NgbModule,
-    FormsModule, ReactiveFormsModule,
-    SharedModule
+    FormsModule,
+    ReactiveFormsModule,
+    SharedModule,
+    MaterialModule
   ],
   providers: [DatePipe],
   bootstrap: [AppComponent]

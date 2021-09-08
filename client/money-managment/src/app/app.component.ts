@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 
 import { AuthService } from './auth.sevice';
 import { User } from './classes/user';
-
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-root',
@@ -11,13 +11,13 @@ import { User } from './classes/user';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'user-system';
-  date:Date;
+  title = 'money-managment';
+  date:string;
   user: User;
   visible: boolean;
   sideBarOpened:boolean;
   constructor(public router: Router, public authService: AuthService ) { 
-    this.date=new Date();
+    this.date=moment().format('DD.MM.YYYY');
     this.user = authService.user;
     this.visible = false;
     this.sideBarOpened = false;

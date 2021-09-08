@@ -29,8 +29,8 @@ export class HttpService {
     let body = {userId, savingId, amount};
     return this.http.post<void>(`${this.host}/transactions/income-to-saving`, body, this.getAuthHeader());
   }
-  getHistory(userId: number ): Observable<History> {
-    return this.http.get<History>(`${this.host}/transactions/history/${userId}`, this.getAuthHeader());
+  getHistory(userId: number, month:number, year:number ): Observable<History> {
+    return this.http.get<History>(`${this.host}/transactions/history/${userId}/${month}/${year}`, this.getAuthHeader());
   }
   getSavingStatistic(userId: number ): Observable<Statistic> {
     return this.http.get<Statistic>(`${this.host}/statistics/income-distribution/${userId}`, this.getAuthHeader());
@@ -38,6 +38,10 @@ export class HttpService {
   getExpenseStatistic(userId: number ): Observable<Statistic> {
     return this.http.get<Statistic>(`${this.host}/statistics/expense-distribution/${userId}`, this.getAuthHeader());
   }
+  updateUser(userId: number, user: User ): Observable<void> {
+    return this.http.post<void>(`${this.host}/users/${userId}`,user, this.getAuthHeader());
+  }
+  
 
   private getAuthHeader() {
     return { headers: { 'Authorization': `Bearer ${this.authService.token}` } } 

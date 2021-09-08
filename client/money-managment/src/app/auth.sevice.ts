@@ -21,6 +21,7 @@ export class AuthService {
         this.userRefresh.subscribe(data => {
             this.user = data;
         });
+        this.refreshUser();
     }
 
     loginUser(user: Credentials): Promise<void> {

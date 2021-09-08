@@ -1,0 +1,16 @@
+.mat-dialog-content {
+  overflow: inherit;
+}
+
+.mat-grid-tile {
+  cursor: pointer;
+}
+
+.mat-grid-tile:hover {
+  border: 1px solid green;
+  border-radius: 5px;
+}
+
+.mat-dialog-title {
+  text-align: center;
+}

@@ -21,9 +21,8 @@ export class DashboardComponent implements OnInit {
   selectedSaving: number;
   selectedIncome: boolean;
   calculatorVisible: boolean;
-  result: number;
 
-  constructor(public activatedRout: ActivatedRoute, private httpService: HttpService, private authService: AuthService) {
+  constructor(public activatedRout: ActivatedRoute, public httpService: HttpService, public authService: AuthService) {
     this.userId = 0;
     this.userIncome = 0
     this.userCurrency = '';
@@ -33,7 +32,6 @@ export class DashboardComponent implements OnInit {
     this.selectedSaving = -1;
     this.selectedSpend = -1;
     this.calculatorVisible = false;
-    this.result = 0;
 
     this.authService.userRefresh.subscribe((data: User) => {
       this.userIncome = data.income;
@@ -93,7 +91,7 @@ export class DashboardComponent implements OnInit {
   applyTransaction(result: number) {
     if (this.selectedIncome && this.selectedSaving != -1) {
       this.httpService.transferFromIncomeToSaving(this.userId, this.savings[this.selectedSaving].id, result).subscribe(() => {
-        this.refreshUser()
+        this.refreshUser();
         this.selectedSpend = -1;
         this.selectedSaving = -1;
         this.selectedIncome = false;
@@ -101,14 +99,12 @@ export class DashboardComponent implements OnInit {
     }
     else if (this.selectedSaving != -1, this.selectedSpend != -1) {
       this.httpService.transferFromSavingToExpenses(this.savings[this.selectedSaving].id, this.expenses[this.selectedSpend].id, result).subscribe(() => {
-        this.refreshUser()
+        this.refreshUser();
         this.selectedSpend = -1;
         this.selectedSaving = -1;
         this.selectedIncome = false;
       });
     }
-
-    this.result = result;
   }
   closeCalculator() {
     this.calculatorVisible = false;

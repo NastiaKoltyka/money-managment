@@ -1,0 +1,51 @@
+.history-title {
+  font-size: 40px;
+  font-weight: 500;
+  width: 100%;
+  text-align: center;
+}
+
+.chose-year span {
+  font-size: 30px;
+  font-weight: 600;
+  color: grey;
+}
+
+.arrow {
+  cursor: pointer;
+}
+
+.chose-year {
+  margin-top: 40px;
+  text-align: center;
+  user-select: none;
+}
+
+.mat-tab-label {
+  min-width: 120px !important;
+  color: grey;
+}
+
+.mat-tab-group.mat-primary .mat-ink-bar,
+.mat-tab-nav-bar.mat-primary .mat-ink-bar {
+  background-color: green;
+}
+
+.mat-tab-group {
+  margin-top: 20px;
+}
+
+table {
+  width: 100%;
+}
+
+th.mat-header-cell,
+td.mat-cell,
+td.mat-footer-cell {
+  text-align: center !important;
+}
+
+th.mat-header-cell {
+  font-size: 25px;
+}
+

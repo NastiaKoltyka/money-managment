@@ -8,7 +8,7 @@ import { HostListener } from '@angular/core';
   templateUrl: './calculator.component.html',
   styleUrls: ['./calculator.component.css']
 })
-export class CalculatorComponent implements OnInit {
+export class CalculatorComponent {
   @Output() apply = new EventEmitter()
   @Output() closeCalculator = new EventEmitter()
   buttons: string[]
@@ -27,9 +27,6 @@ export class CalculatorComponent implements OnInit {
     this.calculator = new FormGroup({
       "number": new FormControl('', Validators.pattern(`^[0-9+\\-*\\/\\(\\)\\.]*$`)),
     })
-  }
-
-  ngOnInit(): void {
   }
 
   pressButton(button: string) {
@@ -59,6 +56,4 @@ export class CalculatorComponent implements OnInit {
   onBlur() {
     this.focused = false;
   }
- 
-
 }
