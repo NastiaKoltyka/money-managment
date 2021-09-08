@@ -6,6 +6,9 @@ import { ChartModule } from 'angular-highcharts';
 
 import { MaterialModule } from '../shared/material/material.module';
 import { StatisticComponent } from './statistic.component';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+
+
 
 const routes: Routes = [
   { path: '', component: StatisticComponent}]
@@ -17,7 +20,9 @@ const routes: Routes = [
     CommonModule,
     RouterModule.forChild(routes),
     ChartModule,
-    MaterialModule
+    MaterialModule,
+    FormsModule,
+    ReactiveFormsModule,
   ]
 })
 export class StatisticModule { }
