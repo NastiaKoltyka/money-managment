@@ -32,11 +32,11 @@ export class HttpService {
   getHistory(userId: number, month:number, year:number ): Observable<History> {
     return this.http.get<History>(`${this.host}/transactions/history/${userId}/${month}/${year}`, this.getAuthHeader());
   }
-  getSavingStatistic(userId: number ): Observable<Statistic> {
-    return this.http.get<Statistic>(`${this.host}/statistics/income-distribution/${userId}`, this.getAuthHeader());
+  getSavingStatistic(userId: number, month:number, year:number  ): Observable<Statistic> {
+    return this.http.get<Statistic>(`${this.host}/statistics/income-distribution/${userId}/${month}/${year}`, this.getAuthHeader());
   }
-  getExpenseStatistic(userId: number ): Observable<Statistic> {
-    return this.http.get<Statistic>(`${this.host}/statistics/expense-distribution/${userId}`, this.getAuthHeader());
+  getExpenseStatistic(userId: number, month:number, year:number  ): Observable<Statistic> {
+    return this.http.get<Statistic>(`${this.host}/statistics/expense-distribution/${userId}/${month}/${year}`, this.getAuthHeader());
   }
   updateUser(userId: number, user: User ): Observable<void> {
     return this.http.post<void>(`${this.host}/users/${userId}`,user, this.getAuthHeader());

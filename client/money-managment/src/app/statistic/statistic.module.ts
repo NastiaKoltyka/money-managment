@@ -4,6 +4,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { ChartModule } from 'angular-highcharts';
 
 
+import { MaterialModule } from '../shared/material/material.module';
 import { StatisticComponent } from './statistic.component';
 
 const routes: Routes = [
@@ -15,7 +16,8 @@ const routes: Routes = [
   imports: [
     CommonModule,
     RouterModule.forChild(routes),
-    ChartModule
+    ChartModule,
+    MaterialModule
   ]
 })
 export class StatisticModule { }

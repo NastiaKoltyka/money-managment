@@ -12,6 +12,8 @@ import { MatRippleModule } from '@angular/material/core';
 import { MatGridListModule } from '@angular/material/grid-list';
 import {MatTabsModule} from '@angular/material/tabs';
 import {MatTableModule} from '@angular/material/table';
+import {MatDatepickerModule} from '@angular/material/datepicker';
+
 
 
 
@@ -30,7 +32,8 @@ import {MatTableModule} from '@angular/material/table';
     MatGridListModule,
     MatTabsModule,
     MatTableModule,
-  ],
+    MatDatepickerModule,
+    ],
   exports: [
     MatToolbarModule,
     MatCardModule,
@@ -43,7 +46,8 @@ import {MatTableModule} from '@angular/material/table';
     MatRippleModule,
     MatGridListModule,
     MatTabsModule,
-    MatTableModule
+    MatTableModule,
+    MatDatepickerModule,
   ]
 })
 export class MaterialModule { }
