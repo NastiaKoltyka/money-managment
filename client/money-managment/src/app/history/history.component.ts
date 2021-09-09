@@ -1,7 +1,6 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { MatTabChangeEvent } from '@angular/material/tabs';
 import * as moment from 'moment';
-import { Moment } from 'moment';
 import { AuthService } from '../auth.sevice';
 import { Category } from '../classes/category';
 

@@ -5,15 +5,13 @@ import { DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE } from '@angular/materia
 import { MatDatepicker } from '@angular/material/datepicker';
 import * as _moment from 'moment';
 import { default as _rollupMoment, Moment } from 'moment';
-
-
+import { FormControl } from '@angular/forms';
+import { MatTabChangeEvent } from '@angular/material/tabs';
 
 
 import { HttpService } from '../http.sevice';
 import { AuthService } from '../auth.sevice';
 import { Statistic } from '../classes/statistic';
-import { FormControl } from '@angular/forms';
-import { MatTabChangeEvent } from '@angular/material/tabs';
 
 const moment = _rollupMoment || _moment;
 export const MY_FORMATS = {
@@ -41,7 +39,7 @@ export const MY_FORMATS = {
   ],
 })
 export class StatisticComponent implements OnInit {
-  savingStatistic: any;
+  savingStatistic: [];
   savingsPercents: number[];
   savingsCategories: string[];
   expensesPercents: number[];
@@ -49,15 +47,17 @@ export class StatisticComponent implements OnInit {
   savingChart: Chart;
   expenseChart: Chart;
   date = new FormControl(moment());
+  displayedColumnsOfSavings: string[] = ['category', 'percent'];
 
   constructor(private httpService: HttpService, private authService: AuthService) {
-    this.savingStatistic = new Statistic();
+    this.savingStatistic = [];
     this.savingsPercents = [];
     this.savingsCategories = [];
     this.expensesPercents = [];
     this.expensesCategories = [];
     this.savingChart = new Chart;
     this.expenseChart = new Chart;
+
   }
 
   ngOnInit(): void {
