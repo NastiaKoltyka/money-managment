@@ -53,11 +53,11 @@ export class StatisticComponent implements OnInit {
   constructor(private httpService: HttpService, private authService: AuthService) {
     this.savingStatistic = new Statistic();
     this.savingsPercents = [];
-    this.savingsCategories=[];
+    this.savingsCategories = [];
     this.expensesPercents = [];
-    this.expensesCategories=[];
-    this.savingChart= new Chart;
-    this.expenseChart= new Chart;
+    this.expensesCategories = [];
+    this.savingChart = new Chart;
+    this.expenseChart = new Chart;
   }
 
   ngOnInit(): void {
@@ -70,12 +70,12 @@ export class StatisticComponent implements OnInit {
 
   }
   tabChanged(tabChangeEvent: MatTabChangeEvent): void {
-     if(tabChangeEvent.index==0){
+    if (tabChangeEvent.index == 0) {
       this.showSavingStatistic(this.authService.user.id, this.date.value.month() + 1, this.date.value.year())
-     }
-     else{
+    }
+    else {
       this.showExpensesStatistic(this.authService.user.id, this.date.value.month() + 1, this.date.value.year())
-     }
+    }
   }
 
   chosenMonthHandler(normalizedMonth: Moment, datepicker: MatDatepicker<Moment>) {
@@ -89,7 +89,7 @@ export class StatisticComponent implements OnInit {
 
   showSavingStatistic(id: number, month: number, year: number) {
     this.savingsPercents = [];
-    this.savingsCategories=[];
+    this.savingsCategories = [];
     this.httpService.getSavingStatistic(id, month, year).subscribe((data: any) => {
       this.savingStatistic = data;
       this.savingStatistic.forEach((element: any) => {
@@ -106,22 +106,30 @@ export class StatisticComponent implements OnInit {
         credits: {
           enabled: false
         },
+        colors: ['red', 'green'],
         xAxis: {
           categories: this.savingsCategories
+        },
+        tooltip: {
+          formatter: function () {
+              return  this.x +':'+ Math.round(this.y)+'%';
+          }
         },
         series: [
           {
             name: 'Line 1',
             type: 'column',
-            data: this.savingsPercents
-          }
+            data: this.savingsPercents,
+            colorByPoint: true,
+          },
+
         ]
       })
     });
   }
   showExpensesStatistic(id: number, month: number, year: number) {
     this.expensesPercents = [];
-    this.expensesCategories=[];
+    this.expensesCategories = [];
     this.httpService.getExpenseStatistic(id, month, year).subscribe((data: any) => {
       this.savingStatistic = data;
       console.log(data)
@@ -142,11 +150,16 @@ export class StatisticComponent implements OnInit {
         xAxis: {
           categories: this.expensesCategories
         },
+        tooltip: {
+          formatter: function () {
+              return  this.x +':'+ Math.round(this.y)+'%';
+          }
+      },
         series: [
           {
-            name: 'Line 1',
             type: 'column',
-            data: this.expensesPercents
+            data: this.expensesPercents,
+            colorByPoint: true,
           }
         ]
       })
