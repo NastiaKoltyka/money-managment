@@ -9,7 +9,7 @@ const getIncomeDistribution = (userId, month, year) => {
             let savings = hist.filter(r => r.expenseId == null);
             let total = savings.map(r => r.amount).reduce((a, b) => a + b, 0);
             return user.savings.map(cat => {
-                return {category: cat.category, percent: savings.filter(r => r.savingId == cat.id).map(r => r.amount).reduce((a, b) => a + b, 0) / total * 100 };
+                return {category: cat.category, percent: savings.filter(r => r.savingId == cat.id).map(r => r.amount).reduce((a, b) => a + b, 0) / total * 100, total:savings.filter(r => r.savingId == cat.id).map(r => r.amount).reduce((a, b) => a + b, 0) };
             });
         });
     });
@@ -21,7 +21,7 @@ const getExpenseDistribution = (userId, month, year) => {
             let expenses = hist.filter(r => r.expenseId != null);
             let total = expenses.map(r => r.amount).reduce((a, b) => a + b, 0);
             return user.expenses.map(cat => {
-                return {category: cat.category, percent: expenses.filter(r => r.expenseId == cat.id).map(r => r.amount).reduce((a, b) => a + b, 0) / total * 100 };
+                return {category: cat.category, percent: expenses.filter(r => r.expenseId == cat.id).map(r => r.amount).reduce((a, b) => a + b, 0) / total * 100, total:expenses.filter(r => r.expenseId == cat.id).map(r => r.amount).reduce((a, b) => a + b, 0) };
             });
         });
     });

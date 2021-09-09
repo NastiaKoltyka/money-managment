@@ -39,7 +39,7 @@ export const MY_FORMATS = {
   ],
 })
 export class StatisticComponent implements OnInit {
-  savingStatistic: [];
+  newStatistic: Statistic[];
   savingsPercents: number[];
   savingsCategories: string[];
   expensesPercents: number[];
@@ -47,10 +47,10 @@ export class StatisticComponent implements OnInit {
   savingChart: Chart;
   expenseChart: Chart;
   date = new FormControl(moment());
-  displayedColumnsOfSavings: string[] = ['category', 'percent'];
+  displayedColumnsOfSavings: string[] = ['category', 'percent', 'total'];
 
   constructor(private httpService: HttpService, private authService: AuthService) {
-    this.savingStatistic = [];
+    this.newStatistic = [];
     this.savingsPercents = [];
     this.savingsCategories = [];
     this.expensesPercents = [];
@@ -90,9 +90,11 @@ export class StatisticComponent implements OnInit {
   showSavingStatistic(id: number, month: number, year: number) {
     this.savingsPercents = [];
     this.savingsCategories = [];
-    this.httpService.getSavingStatistic(id, month, year).subscribe((data: any) => {
-      this.savingStatistic = data;
-      this.savingStatistic.forEach((element: any) => {
+    this.httpService.getSavingStatistic(id, month, year).subscribe((data: Statistic[]) => {
+      this.newStatistic = data.sort(function (x, y) {
+        return y.percent-x.percent;
+    });;
+      this.newStatistic.forEach((element: Statistic) => {
         this.savingsPercents.push(element.percent)
         this.savingsCategories.push(element.category)
       });
@@ -108,12 +110,25 @@ export class StatisticComponent implements OnInit {
         },
         colors: ['red', 'green'],
         xAxis: {
-          categories: this.savingsCategories
+          categories: this.savingsCategories,
+          labels: {
+            style: {
+              fontSize: '17px'
+            }
+          }
+        },
+        yAxis:{
+          title:{
+            text: ''
+          }
         },
         tooltip: {
           formatter: function () {
-              return  this.x +':'+ Math.round(this.y)+'%';
+            return this.x + ':' + Math.round(this.y) + '%';
           }
+        },
+        legend: {
+          enabled: false,
         },
         series: [
           {
@@ -130,10 +145,9 @@ export class StatisticComponent implements OnInit {
   showExpensesStatistic(id: number, month: number, year: number) {
     this.expensesPercents = [];
     this.expensesCategories = [];
-    this.httpService.getExpenseStatistic(id, month, year).subscribe((data: any) => {
-      this.savingStatistic = data;
-      console.log(data)
-      this.savingStatistic.forEach((element: any) => {
+    this.httpService.getExpenseStatistic(id, month, year).subscribe((data: Statistic[]) => {
+      this.newStatistic = data;
+      this.newStatistic.forEach((element: any) => {
         this.expensesPercents.push(element.percent)
         this.expensesCategories.push(element.category)
       });
@@ -147,14 +161,27 @@ export class StatisticComponent implements OnInit {
         credits: {
           enabled: false
         },
+        legend: {
+          enabled: false,
+        },
         xAxis: {
-          categories: this.expensesCategories
+          categories: this.expensesCategories,
+          labels: {
+            style: {
+              fontSize: '17px'
+            }
+          }
+        },
+        yAxis:{
+          title:{
+            text: ''
+          }
         },
         tooltip: {
           formatter: function () {
-              return  this.x +':'+ Math.round(this.y)+'%';
+            return this.x + ':' + Math.round(this.y) + '%';
           }
-      },
+        },
         series: [
           {
             type: 'column',

@@ -1,48 +1,48 @@
 <mat-form-field appearance="fill">
-    <mat-label>Month and Year</mat-label>
-    <input matInput [matDatepicker]="dp" [formControl]="date">
-    <mat-datepicker-toggle matSuffix [for]="dp"></mat-datepicker-toggle>
-    <mat-datepicker #dp startView="multi-year" (yearSelected)="chosenYearHandler($event)"
-        (monthSelected)="chosenMonthHandler($event, dp)" panelClass="example-month-picker">
-    </mat-datepicker>
+  <mat-label>Month and Year</mat-label>
+  <input matInput [matDatepicker]="dp" [formControl]="date">
+  <mat-datepicker-toggle matSuffix [for]="dp"></mat-datepicker-toggle>
+  <mat-datepicker #dp startView="multi-year" (yearSelected)="chosenYearHandler($event)"
+    (monthSelected)="chosenMonthHandler($event, dp)" panelClass="example-month-picker">
+  </mat-datepicker>
 </mat-form-field>
 <mat-tab-group animationDuration="0ms" (selectedTabChange)="tabChanged($event)">
-    <mat-tab label="Saving">
-        <div [chart]="savingChart"></div> 
-        <table mat-table [dataSource]="savingStatistic" class="mat-elevation-z8">
-            <ng-container matColumnDef="category">
-              <th mat-header-cell *matHeaderCellDef> Category </th>
-              <td mat-cell *matCellDef="let data"> {{data.category}} </td>
-            </ng-container>
-            <ng-container matColumnDef="percent">
-              <th mat-header-cell *matHeaderCellDef> Percent of saving </th>
-              <td mat-cell *matCellDef="let data"> {{data.percent| number: '1.0-0'}}%</td>
-            </ng-container>
-            <!-- <ng-container matColumnDef="date">
-              <th mat-header-cell *matHeaderCellDef> Date </th>
-              <td mat-cell *matCellDef="let data"> {{data.date | date: 'dd.MM.yyyy HH:mm:ss'}} </td>
-            </ng-container> -->
-            <tr mat-header-row *matHeaderRowDef="displayedColumnsOfSavings"></tr>
-            <tr mat-row *matRowDef="let row; columns: displayedColumnsOfSavings;"></tr>
-          </table>       
-    </mat-tab>
-    <mat-tab label="Expense">
-        <div [chart]="expenseChart"></div>
-        <table mat-table [dataSource]="savingStatistic" class="mat-elevation-z8">
-            <ng-container matColumnDef="category">
-              <th mat-header-cell *matHeaderCellDef> Category </th>
-              <td mat-cell *matCellDef="let data"> {{data.category}} </td>
-            </ng-container>
-            <ng-container matColumnDef="percent">
-              <th mat-header-cell *matHeaderCellDef> Percent of expense </th>
-              <td mat-cell *matCellDef="let data"> {{data.percent| number: '1.0-0'}}%</td>
-            </ng-container>
-            <!-- <ng-container matColumnDef="date">
-              <th mat-header-cell *matHeaderCellDef> Date </th>
-              <td mat-cell *matCellDef="let data"> {{data.date | date: 'dd.MM.yyyy HH:mm:ss'}} </td>
-            </ng-container> -->
-            <tr mat-header-row *matHeaderRowDef="displayedColumnsOfSavings"></tr>
-            <tr mat-row *matRowDef="let row; columns: displayedColumnsOfSavings;"></tr>
-          </table>       
-    </mat-tab>
+  <mat-tab label="Saving">
+    <div [chart]="savingChart"></div>
+    <table mat-table [dataSource]="newStatistic" class="mat-elevation-z8">
+      <ng-container matColumnDef="category">
+        <th mat-header-cell *matHeaderCellDef> Category </th>
+        <td mat-cell *matCellDef="let data"> {{data.category}} </td>
+      </ng-container>
+      <ng-container matColumnDef="percent">
+        <th mat-header-cell *matHeaderCellDef> Percent of saving </th>
+        <td mat-cell *matCellDef="let data"> {{data.percent==null?0 :data.percent| number: '1.0-0'}}%</td>
+      </ng-container>
+      <ng-container matColumnDef="total">
+        <th mat-header-cell *matHeaderCellDef> Total </th>
+        <td mat-cell *matCellDef="let data"> {{data.total}} </td>
+      </ng-container>
+      <tr mat-header-row *matHeaderRowDef="displayedColumnsOfSavings"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumnsOfSavings;"></tr>
+    </table>
+  </mat-tab>
+  <mat-tab label="Expense">
+    <div [chart]="expenseChart"></div>
+    <table mat-table [dataSource]="newStatistic" class="mat-elevation-z8">
+      <ng-container matColumnDef="category">
+        <th mat-header-cell *matHeaderCellDef> Category </th>
+        <td mat-cell *matCellDef="let data"> {{data.category}} </td>
+      </ng-container>
+      <ng-container matColumnDef="percent">
+        <th mat-header-cell *matHeaderCellDef> Percent of expense </th>
+        <td mat-cell *matCellDef="let data"> {{data.percent==null?0:data.percent| number: '1.0-0'}}%</td>
+      </ng-container>
+      <ng-container matColumnDef="total">
+        <th mat-header-cell *matHeaderCellDef> Total </th>
+        <td mat-cell *matCellDef="let data"> {{data.total}} </td>
+      </ng-container>
+      <tr mat-header-row *matHeaderRowDef="displayedColumnsOfSavings"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumnsOfSavings;"></tr>
+    </table>
+  </mat-tab>
 </mat-tab-group>
