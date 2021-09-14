@@ -39,7 +39,8 @@ export const MY_FORMATS = {
   ],
 })
 export class StatisticComponent implements OnInit {
-  newStatistic: Statistic[];
+  savings: Statistic[];
+  expenses: Statistic[];
   savingsPercents: number[];
   savingsCategories: string[];
   expensesPercents: number[];
@@ -50,7 +51,8 @@ export class StatisticComponent implements OnInit {
   displayedColumnsOfSavings: string[] = ['category', 'percent', 'total'];
 
   constructor(private httpService: HttpService, private authService: AuthService) {
-    this.newStatistic = [];
+    this.savings = [];
+    this.expenses = [];
     this.savingsPercents = [];
     this.savingsCategories = [];
     this.expensesPercents = [];
@@ -91,10 +93,10 @@ export class StatisticComponent implements OnInit {
     this.savingsPercents = [];
     this.savingsCategories = [];
     this.httpService.getSavingStatistic(id, month, year).subscribe((data: Statistic[]) => {
-      this.newStatistic = data.sort(function (x, y) {
+      this.savings = data.sort(function (x, y) {
         return y.percent-x.percent;
     });;
-      this.newStatistic.forEach((element: Statistic) => {
+      this.savings.forEach((element: Statistic) => {
         this.savingsPercents.push(element.percent)
         this.savingsCategories.push(element.category)
       });
@@ -146,8 +148,8 @@ export class StatisticComponent implements OnInit {
     this.expensesPercents = [];
     this.expensesCategories = [];
     this.httpService.getExpenseStatistic(id, month, year).subscribe((data: Statistic[]) => {
-      this.newStatistic = data;
-      this.newStatistic.forEach((element: any) => {
+      this.expenses = data;
+      this.expenses.forEach((element: any) => {
         this.expensesPercents.push(element.percent)
         this.expensesCategories.push(element.category)
       });

@@ -9,7 +9,7 @@
 <mat-tab-group animationDuration="0ms" (selectedTabChange)="tabChanged($event)">
   <mat-tab label="Saving">
     <div [chart]="savingChart"></div>
-    <table mat-table [dataSource]="newStatistic" class="mat-elevation-z8">
+    <table mat-table [dataSource]="savings" class="mat-elevation-z8">
       <ng-container matColumnDef="category">
         <th mat-header-cell *matHeaderCellDef> Category </th>
         <td mat-cell *matCellDef="let data"> {{data.category}} </td>
@@ -28,7 +28,7 @@
   </mat-tab>
   <mat-tab label="Expense">
     <div [chart]="expenseChart"></div>
-    <table mat-table [dataSource]="newStatistic" class="mat-elevation-z8">
+    <table mat-table [dataSource]="expenses" class="mat-elevation-z8">
       <ng-container matColumnDef="category">
         <th mat-header-cell *matHeaderCellDef> Category </th>
         <td mat-cell *matCellDef="let data"> {{data.category}} </td>
